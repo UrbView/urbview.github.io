@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Yourview-AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/w3.css">
+<link rel="stylesheet" href="/css/raleway-font.css">
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/yourstyle.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+/* TODO: 'MORE pages'*/
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/images/street-horizontal.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <!-- LOGO 
+    <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
+    -->
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">YourView</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">YourView</span><br>
+    <span class="w3-large">Städte für alle Farben und Geschlechter gestalten</span>
+    <p><a href="#work" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Erfahren Sie mehr über unsere Projekte</a></p>
+  </div> 
+  <!-- Bottom left social media
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+  </div>
+  -->
+</header>
+
+<div class="w3-container" style="padding:64px 32px" id="YourView description">
+  <h1>
+    Das KI-Modell von YourView hilft Stadtplanern und Architekten, Städte der Zukunft mit einem geringeren Risiko von Kriminalität und Belästigung zu entwerfen.  </h1>
+</div>
+
+<div class="w3-container w3-light-grey" style="padding:32px 16px" id="our mission">
+
+  <h3 class="w3-center">UNSERE AUFGABE</h3>
+
+  <p class="w3-center w3-large">
+    Wir bieten Zugangsfreiheit für alle Bürger, indem wir Kriminalität und Belästigung durch Stadtplanung reduzieren.  </p>
+  
+</div>
+<div class="w3-container w3-light-grey" style="padding:32px 16px" id="city planners">
+
+  <h3 class="w3-center">NACHHALTIGE STÄDTE</h3>
+
+  <p class="w3-center w3-large">
+    Das KI-Modell von YourView hilft Stadtplanern und Architekten, Städte der Zukunft mit einem geringeren Risiko von Kriminalität und Belästigung zu entwerfen. <br>
+    Unser Angebot für Stadtplaner und Architekten:<br>
+    <div class="center_align_list">
+      <ol>
+        <li>Sie werden Kriminalität und Belästigung in zukünftigen Stadtplänen reduzieren.</li>
+        <li>YourView-KI-Modell:</li>
+        <ul>
+          <li>Erkennt Gefahrenzonen für Kriminalität und Belästigung in Ihrer Stadtgestaltung.</li>
+          <li>Gibt Ihnen visuelle Vorschläge zu möglichen Änderungen.</li>
+        </ul>
+        <li>Das YourView-KI-Modell hilft Ihnen dabei:</li>
+        <ul>
+          <li>Reduzieren Sie die Zeit für die Stadtplanung.</li>
+          <li>Einnahmen steigern.</li>
+        </ul>
+      </ol> 
+    </div>
+  </p>
+  
+</div>
+
+<div class="w3-container w3-light-grey" style="padding:32px 16px" id="goverment">
+
+  <h3 class="w3-center">REGIERUNGEN</h3>
+  
+  <p class="w3-center w3-large">
+    Sie werden eine nachhaltige Stadt und Gemeinde schaffen. <br>
+
+    Das KI-Modell von YouView hilft Ihnen dabei: <br>
+    <div class="center_align_list">
+      <ol>
+        <li>Haben Sie einen klaren Überblick über Sicherheit und Verbrechen in der Stadt.</li>
+        <li>Erstellen Sie ein intelligentes Budget für die Erneuerung der städtischen Umwelt.</li>
+        <li>Verringern Sie die Kriminalitäts- und Belästigungsrate.</li>
+      </ol>
+    </div>
+  </p>
+</div>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center">Über das Unternehmen</h3>
+  <p class="w3-center w3-large">Hauptmerkmale unseres Unternehmens</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Innovation</p>
+      <p>
+
+        Mit den besten Technologien die Zukunft unserer Städte gestalten.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Passion</p>
+      <p>Mit Herz und Verstand verpflichtet, einen positiven Einfluss auf die Sicherheit unserer Gesellschaft zu nehmen.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Diversität</p>
+      <p>
+
+        Bereit, eine sicherere Umgebung für alle Geschlechter und Rassen zu schaffen.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Die Unterstützung</p>
+      <p>Mit den Menschen für die Menschen arbeiten.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Work Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 32px" id="work">
+  <h3 class="w3-center">UNSERE ARBEIT</h3>
+  <p class="w3-center w3-large">Städte und Bürger mit KI stärken</p>
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>ELBESTREETS</h3>
+      <p class="w3-large">Verringerung der Häufigkeit von Belästigungen auf der Straße und Förderung der Sicherheit in Städten mithilfe von KI-Technologie (künstliche Intelligenz).</p>
+      <p>Wir verwenden Daten von Orten, an denen sich Menschen wohl und nicht wohl fühlen, um mögliche Muster in der Gestaltung der Spots zu identifizieren, die mit Belästigung auf der Straße in Verbindung gebracht werden können.<br>
+        Dies dient als Werkzeug, um Stadtentwürfe für alle integrativer zu gestalten.
+      </p>
+    </div>
+    <div class="w3-col m6" style="padding:0px 64px">
+      <figure>
+        <img class="w3-image w3-round-large" src="/images/panoramic_heatmap.png" alt="Heatmap" width="300" height="194" >
+        <figcaption>Fig.1 - Model response to original design.</figcaption>
+      </figure>
+      <figure>
+        <img class="w3-image w3-round-large" src="/images/panoramic_with_new_features_heatmap.png" alt="Heatmap" width="300" height="194">
+        <figcaption>Fig.2 - Model response to safer design.</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<div class="w3-container" style="padding:32px 16px" id="team">
+  <h3 class="w3-center">DIE MANNSCHAFT</h3>
+  <p class="w3-center w3-large">Diejenigen, die dieses Unternehmen führen</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="/images/franzi_face.jpg" alt="Franziska" style="width:100%" onclick="window.open('/people/franzi.html')">
+        <div class="w3-container">
+          <h3>Franziska Vogg</h3>
+          <p class="w3-opacity">Kriminologischer Forscher</p>
+          <p>Nach ihrer Recherche zu sexueller Gewalt und Einwilligung will Franzi das Auftreten und die Wahrnehmung von damit verbundenen Straftaten und Übertretungen verändern.
+            (Das Empowerment von Opfern und gefährdeten gesellschaftlichen Gruppen ist eines der Merkmale, die sie am Konzept des YourView-Modells am meisten schätzt).
+            Sie ist verantwortlich für die Überwachung des Verwaltungsbetriebs und der strategischen Entwicklung des Unternehmens, um kurz- und langfristige Ziele zu erreichen.
+
+</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="/images/tony_stark_face.jpeg" alt="Adri" onclick="window.open('/people/adri.html')" style="width:100%">
+        <div class="w3-container">
+          <h3>Adria Molina</h3>
+          <p class="w3-opacity">Computer Vision & AI Researcher</p>
+          <p>Adri ist Computer-Vision-Forscher am Computer Vision Center, Barcelona.
+            Er ist in der Lage, innerhalb weniger Minuten eine Datenlösung für jedes Problem bereitzustellen. Trotzdem verbringt er die meiste Zeit damit, zu träumen und Musik zu machen.
+            In YourView möchte er die neuesten KI- und Computer Vision-Lösungen bereitstellen, um unsere Technologie auf dem neuesten Stand der Technik zu halten.
+            außerdem kann er nicht aufhören, über Datenmanagement und Daten als Service zu sprechen, sodass YourView nie in der Zeit zurückfällt.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="/images/gerard_face.jpeg" alt="Gerard" onclick="window.open('/people/gerard.html')" style="width:100%">
+        <div class="w3-container">
+          <h3>Gerard Jover</h3>
+          <p class="w3-opacity">Machine Learning Engineer</p>
+          <p>Gerard verfügt über die erforderlichen Fähigkeiten, um die von YourView verwendeten Algorithmen zu entwickeln. Sein Studium in Data Engineering und seine Erfahrung in der Erstellung von KI-Lösungen ermöglichen es ihm
+            End-to-End-Lösungen nach den Anforderungen der Benutzer zu entwerfen. Seine Aufgabe im Unternehmen ist es, die Architektur der Big-Data-Software zu entwerfen und zu überwachen
+            die KI-Algorithmen.
+          </p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+
+<!-- Support Team Section -->
+
+<div class="w3-container" style="padding:32px 16px" id="team">
+  <h3 class="w3-center">SUPPORT TEAM</h3>
+  <p class="w3-center w3-large">The ones who cheer this company</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="/images/elnaz_face.jpg" alt="Elham" onclick="window.open('/people/elnaz.html')" style="width:100%">
+        <div class="w3-container">
+          <h3>Elham Nouri</h3>
+          <p class="w3-opacity">Stadtdesign und Gleichstellungsstudien.</p>
+          <p>Elnaz ist in leitender Funktion tätig. Sie hat den DDS- und MPH-Abschluss mit Hintergrund in der Forschung zu sexueller Gewalt und Geschlechtergerechtigkeit.
+            Mit ihrer Erfahrung in der Führung ihres eigenen Unternehmens ist sie die treibende Kraft hinter unserer Netzwerk- und Geschäftsstrategie.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Skills Section 
+<div class="w3-container w3-light-grey w3-padding-64">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>Our Skills.</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
+      tempor incididunt ut labore et dolore.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
+      tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-col m6">
+      <p class="w3-wide"><i class="fa fa-camera w3-margin-right"></i>Photography</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:90%">90%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-desktop w3-margin-right"></i>Web Design</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-photo w3-margin-right"></i>Photoshop</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:75%">75%</div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div class="w3-center" style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Hamburg, DE & Barcelona, Spain</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>Email: admin@yourviewai.com</p>
+    <p><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right"></i>https://www.linkedin.com/company/yourview-ai</p>
+    <a href="/index.html" onclick="location.href = 'www.yourviewai.com/lang/en/';" class="w3-bar-item w3-button">ENGLISH VERSION🇬🇧 </a>
+    <!-- PHONE
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+    -->
+    <!-- SEND DIRECT MESSAGE (php)
+    <br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+    -->
+    <!-- Image of location/map 
+    <img src="/images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+    -->
+  </div>
+</div>
+<p>
+
+
+</p>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <!-- Other social media-
+    <a href="https://www.linkedin.com/company/yourview-ai" title="YourView linkedin" target="_blank">
+      <i class="fa fa-lin    kedin"></i>
+    </a>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    --->
+    </div>
+  </footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>
