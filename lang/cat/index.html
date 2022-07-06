@@ -39,15 +39,23 @@ body, html {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <!-- LOGO 
-    <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
-    -->
+    
+    <!-- Left-sided navbar links -->
+    <div class="w3-left-center w3-hide-small">
+      <select name="langs" id="langs" class="w3-bar-item w3-button">
+        <option onclick="location.href = '/lang/du/';" value="Catalan">Alemany 🇩🇪 </option>
+        <option onclick="location.href = '/lang/en/';" value="German">Anglès 🇬🇧 </option>
+        <option selected value="English">Català </option>
+      </select>
+    </div>
+    <!-- Hide left-floated links on small screens and replace them with a menu icon -->
+
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">SOBRE</a>
-      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> EQUIP</a>
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PROjECTES</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACTE</a>
+      <a href="#about" class="w3-bar-item w3-button">SOBRE NOSALTRES</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> EQUIP </a>
+      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PROJECTES </a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACTE </a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -60,9 +68,9 @@ body, html {
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">SOBRE</a>
-  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">PROjectEs</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">SOBRE NOSALTRES</a>
   <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">EQUIP</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">PROJECTES</a>
   <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACTE</a>
 </nav>
 
@@ -88,7 +96,7 @@ body, html {
 
 <div class="w3-container" style="padding:64px 32px" id="YourView description">
   <h1>
-  El model d'IA e YourView ajuda a urbanistes i arquitectes de l'espai públic a reduir la freqüència de casos d'assatjament.
+  El model d'IA de YourView ajuda a urbanistes i arquitectes de l'espai públic a reduir la freqüència de casos d'assatjament.
   </h1>
 </div>
 
@@ -103,13 +111,11 @@ body, html {
 </div>
 <div class="w3-container w3-light-grey" style="padding:32px 16px" id="city planners">
 
-  <h3 class="w3-center"> CIUTATS SOSTENIBLES</h3>
-
+  <h3 class="w3-center">CIUTATS SOSTENIBLES</h3>
+  
   <p class="w3-center w3-large">
-    
-
-El model YourView AI ajuda els urbanistes i els arquitectes a dissenyar ciutats futures amb menor risc de delictes i assetjament. <br>
-Què oferim als urbanistes i arquitectes: <br>
+    El model YourView AI ajuda els urbanistes i els arquitectes a dissenyar ciutats futures amb menor risc de delictes i assetjament. <br>
+    Què oferim als urbanistes i arquitectes: <br>
     <div class="center_align_list">
       <ol>
         <li>Reduiràs la delinqüència i l'assetjament en futurs plans urbanístics.</li>
@@ -122,8 +128,6 @@ Què oferim als urbanistes i arquitectes: <br>
         <ul>
           <li>Redueix el temps per al disseny urbà.</li>
           <li>Augmentar els ingressos.</li>
-
-
         </ul>
       </ol> 
     </div>
@@ -133,7 +137,7 @@ Què oferim als urbanistes i arquitectes: <br>
 
 <div class="w3-container w3-light-grey" style="padding:32px 16px" id="goverment">
 
-  <h3 class="w3-center">GOVERNMENTS</h3>
+  <h3 class="w3-center">GOVERNS</h3>
   
   <p class="w3-center w3-large">
     Crearàs una ciutat i una comunitat sostenibles. <br>
@@ -192,11 +196,11 @@ Què oferim als urbanistes i arquitectes: <br>
     <div class="w3-col m6" style="padding:0px 64px">
       <figure>
         <img class="w3-image w3-round-large" src="/images/panoramic_heatmap.png" alt="Heatmap" width="300" height="194" >
-        <figcaption>Fig.1 - Model response to original design.</figcaption>
+        <figcaption>Fig.1 - Resposta del model al disseny original.</figcaption>
       </figure>
       <figure>
         <img class="w3-image w3-round-large" src="/images/panoramic_with_new_features_heatmap.png" alt="Heatmap" width="300" height="194">
-        <figcaption>Fig.2 - Model response to safer design.</figcaption>
+        <figcaption>Fig.2 - Resposta del model al disseny segur.</figcaption>
       </figure>
     </div>
   </div>
@@ -212,7 +216,7 @@ Què oferim als urbanistes i arquitectes: <br>
         <img src="/images/franzi_face.jpg" alt="Franziska" style="width:100%" onclick="window.open('/people/franzi.html')">
         <div class="w3-container">
           <h3>Franziska Vogg</h3>
-          <p class="w3-opacity">Criminology researcher</p>
+          <p class="w3-opacity">Investigació en criminologia.</p>
           <p>Després de la seva investigació sobre la violència i el consentiment sexual, Franzi pretén marcar la diferència en l'ocurrència i la percepció dels crims i transgressions relacionats.
             (L'apoderament de les víctimes i els grups socials en perill d'extinció és una de les característiques que més valora del concepte del model YourView).
             És responsable de supervisar les operacions administratives i el desenvolupament estratègic de l'empresa per tal d'assolir els objectius a curt i llarg termini.</p>
@@ -225,7 +229,7 @@ Què oferim als urbanistes i arquitectes: <br>
         <img src="/images/tony_stark_face.jpeg" alt="Adri" onclick="window.open('/people/adri.html')" style="width:100%">
         <div class="w3-container">
           <h3>Adria Molina</h3>
-          <p class="w3-opacity">Computer Vision & AI Researcher</p>
+          <p class="w3-opacity">Visió per computador i IA.</p>
           <p>Adri és investigador de visió per computador al Computer Vision Center de Barcelona.
             És capaç de proporcionar una solució de dades per a qualsevol problema en qüestió de minuts. No obstant això, passa la major part del seu temps somiant i tocant música.
             A YourView pretén oferir les solucions més noves d'IA i visió per ordinador per mantenir la nostra tecnologia actualitzada a l'estat de l'art;
@@ -239,7 +243,7 @@ Què oferim als urbanistes i arquitectes: <br>
         <img src="/images/gerard_face.jpeg" alt="Gerard" onclick="window.open('/people/gerard.html')" style="width:100%">
         <div class="w3-container">
           <h3>Gerard Jover</h3>
-          <p class="w3-opacity">Machine Learning Engineer</p>
+          <p class="w3-opacity">Enginyer d'aprenentatge computacional.</p>
           <p>En Gerard té les habilitats necessàries per desenvolupar els algorismes que utilitza YourView. Els seus estudis en enginyeria de dades i l'experiència creant solucions d'IA li permeten
             dissenyar solucions d'extrem a extrem segons els requisits dels usuaris. La seva funció a l'empresa és dissenyar l'arquitectura del programari de big data i supervisar-la
             els algorismes d'IA.
@@ -264,7 +268,7 @@ Què oferim als urbanistes i arquitectes: <br>
         <img src="/images/elnaz_face.jpg" alt="Elham" onclick="window.open('/people/elnaz.html')" style="width:100%">
         <div class="w3-container">
           <h3>Elham Nouri</h3>
-          <p class="w3-opacity">City design and gender equality studies.</p>
+          <p class="w3-opacity">Estudis en disseny de ciutats i d'igualtat de gènere.</p>
           <p>Elnaz treballa en la capacitat de direcció. Té el títol de DDS i MPH amb formació en investigació sobre violència sexual i equitat de gènere.
             Amb experiència dirigint el seu propi negoci, és el motor de la nostra estratègia empresarial i de networking.</p>
           <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
@@ -307,20 +311,12 @@ Què oferim als urbanistes i arquitectes: <br>
 
 <!-- Contact Section -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-  <h3 class="w3-center">CONTACT</h3>
-  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <h3 class="w3-center">CONTACTE</h3>
+  <p class="w3-center w3-large">Posa't en contacte. Envia'ns un missatge:</p>
   <div class="w3-center" style="margin-top:48px">
     <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Hamburg, DE & Barcelona, Spain</p>
     <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>Email: admin@yourviewai.com</p>
     <p><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right"></i>https://www.linkedin.com/company/yourview-ai</p>
-
-    <label for="langs">IDIOMA:</label>
-    <select name="langs" id="langs">
-      <option onclick="location.href = '/lang/du/';" value="German">GERMAN VERSION 🇩🇪</option>
-      <option onclick="location.href = '/lang/en/';" value="English">ENGLISH VERSION 🇬🇧</option>
-      <option selected value="Catalan">CATALAN VERSION</option>
-    </select> 
-
     <!-- PHONE
     <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
     -->
@@ -349,7 +345,7 @@ Què oferim als urbanistes i arquitectes: <br>
 </p>
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Torna al principi</a>
   <div class="w3-xlarge w3-section">
     <!-- Other social media-
     <a href="https://www.linkedin.com/company/yourview-ai" title="YourView linkedin" target="_blank">

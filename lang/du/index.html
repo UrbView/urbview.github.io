@@ -36,9 +36,17 @@ body, html {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <!-- LOGO 
-    <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
-    -->
+    
+    <!-- Left-sided navbar links -->
+    <div class="w3-left-center w3-hide-small">
+      <select name="langs" id="langs" class="w3-bar-item w3-button">
+        <option selected value="English">Deutsch 🇩🇪 </option>
+        <option onclick="location.href = '/lang/en/';" value="German">Englisch 🇬🇧 </option>
+        <option onclick="location.href = '/lang/cat/';" value="Catalan">Katalanisch </option>
+      </select>
+    </div>
+    <!-- Hide left-floated links on small screens and replace them with a menu icon -->
+
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
       <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
@@ -311,14 +319,6 @@ body, html {
     <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Hamburg, DE & Barcelona, Spain</p>
     <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>Email: admin@yourviewai.com</p>
     <p><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right"></i>https://www.linkedin.com/company/yourview-ai</p>
-    <label for="langs">LANGUAGE:</label>
-    <select name="langs" id="langs">
-      <option selected value="German">GERMAN VERSION 🇩🇪</option>
-      <option onclick="location.href = '/lang/en/';" value="English">ENGLISH VERSION 🇬🇧</option>
-      <option  onclick="location.href = '/lang/cat/';" value="Catalan">CATALAN VERSION</option>
-    </select>
-    
-    
     <!-- PHONE
     <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
     -->
