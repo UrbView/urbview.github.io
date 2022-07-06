@@ -309,8 +309,12 @@ body, html {
     <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Hamburg, DE & Barcelona, Spain</p>
     <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>Email: admin@yourviewai.com</p>
     <p><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right"></i>https://www.linkedin.com/company/yourview-ai</p>
-    <a href="/lang/du/" onclick="location.href = 'www.yourviewai.com/lang/du/';"  class="w3-bar-item w3-button">GERMAN VERSION 🇩🇪</a>
-
+    <label for="langs">LANGUAGE:</label>
+    <select name="langs" id="langs">
+      <option onclick="location.href = '/lang/du/';" value="German">GERMAN VERSION 🇩🇪</option>
+      <option selected value="English">ENGLISH VERSION 🇬🇧</option>
+      <option  onclick="location.href = '/lang/cat/';" value="Catalan">CATALAN VERSION</option>
+    </select>
     <!-- PHONE
     <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
     -->
