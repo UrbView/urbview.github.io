@@ -39,10 +39,10 @@ body, html {
     
     <!-- Left-sided navbar links -->
     <div class="w3-left-center w3-hide-small">
-      <select name="langs" id="langs" class="w3-bar-item w3-button">
-        <option selected value="English">Deutsch 🇩🇪 </option>
-        <option onclick="location.href = '/lang/en/';" value="German">Englisch 🇬🇧 </option>
-        <option onclick="location.href = '/lang/cat/';" value="Catalan">Katalanisch </option>
+      <select name="langs" id="langs" class="w3-bar-item w3-button" onchange="location.href = this.value">
+        <option selected value="/lang/du/">Deutsch 🇩🇪 </option>
+        <option onclick="" value="/lang/en/">Englisch 🇬🇧 </option>
+        <option onclick="" value="/lang/cat/">Katalanisch </option>
       </select>
     </div>
     <!-- Hide left-floated links on small screens and replace them with a menu icon -->
