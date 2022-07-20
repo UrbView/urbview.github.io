@@ -195,11 +195,11 @@ function showSlides(n) {
 
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 37) {
-        clearTimeout(timeoutID)
+        clearTimeout(timeoutID);
         plusSlides(-1);
     }
     else if(event.keyCode == 39) {
-        clearTimeout(timeoutID)
+        clearTimeout(timeoutID);
         plusSlides(1);
     }
 })
@@ -209,22 +209,22 @@ let touchendX = 0
 
 function checkDirection() {
   if (touchendX < touchstartX) {
-      clearTimeout(timeoutID)
-      plusSlides(-1);
+      clearTimeout(timeoutID);
+      plusSlides(1);
   }
   if (touchendX > touchstartX) {
-      clearTimeout(timeoutID)
-      plusSlides(1);
+      clearTimeout(timeoutID);
+      plusSlides(-1);
   }
 }
 
 document.addEventListener('touchstart', e => {
-  touchstartX = e.changedTouches[0].screenX
+  touchstartX = e.changedTouches[0].screenX;
 })
 
 document.addEventListener('touchend', e => {
-  touchendX = e.changedTouches[0].screenX
-  checkDirection()
+  touchendX = e.changedTouches[0].screenX;
+  checkDirection();
 })
 
 </script>
