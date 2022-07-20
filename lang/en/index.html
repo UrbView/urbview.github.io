@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/raleway-font.css">
 <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/yourstyle.css">
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -22,7 +23,7 @@ body, html {
 .bgimg-1 {
   background-position: center;
   background-size: cover;
-  background-image: url("/images/street-horizontal.jpg");
+  background-image: url("/images/backgrounds/street-horizontal.jpg");
   min-height: 100%;
 }
 
@@ -30,17 +31,14 @@ body, html {
   padding: 16px;
 }
 </style>
-
-
-
 </head>
-<body>
 
+<body>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
 
-    <!-- Left-sided navbar links -->
+    <!-- Left-sided language selector -->
     <div class="w3-left-center">
       <select name="langs" id="langs" class="w3-bar-item w3-button" onchange="location.href = this.value">
         <option onclick="" value="/lang/du/">German 🇩🇪 </option>
@@ -48,7 +46,6 @@ body, html {
         <option onclick="" value="/lang/cat/">Catalan </option>
       </select>
     </div>
-    <!-- Hide left-floated links on small screens and replace them with a menu icon -->
 
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
@@ -81,99 +78,154 @@ body, html {
     <span class="w3-xxlarge w3-hide-large w3-hide-medium">YourView</span><br>
     <span class="w3-large">Designing cities for all colours and genders</span>
     <p><a href="#work" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more about our projects</a></p>
-  </div> 
-  <!-- Bottom left social media
-  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
   </div>
-  -->
 </header>
 
-<div class="w3-container" style="padding:64px 32px" id="YourView description">
+<!-- Brief introduction -->
+<div class="w3-container w3-center" style="padding:64px 32px" id="YourView description">
   <h1>
-  YourView AI model helps urban planners and architects to design future cities with lower risk of crimes and harassment.
+  YourView AI model helps urban planners and architects to design <br>
+  future cities with lower risk of crimes and harassment.
   </h1>
 </div>
 
-<div class="w3-container w3-light-grey" style="padding:32px 16px" id="our mission">
+<!-- Slideshow container (arrow slider) -->
+<div class="w3-container w3-light-gray" style="padding:32px 16px" id="introduction">
+  <div class="slideshow-container">
 
-  <h3 class="w3-center">OUR MISSION</h3>
-
-  <p class="w3-center w3-large">
-    We provide freedom of access for all the citizens by reducing crime and harassment through urban planning.
-  </p>
-  
-</div>
-<div class="w3-container w3-light-grey" style="padding:32px 16px" id="city planners">
-
-  <h3 class="w3-center">SUSTAINABLE CITIES</h3>
-
-  <p class="w3-center w3-large">
-    YourView AI model helps urban planners and architects to design future cities with lower risk of crimes and harassment. <br>
-    What we offer to urban planners and architects: <br>
-    <div class="center_align_list">
-      <ol>
-        <li>You will reduce crime and harassment in future urban plans.</li>
-        <li>YourView AI model:</li>
-        <ul>
-          <li>Detects crime and harassment danger zones in your urban design.</li>
-          <li>Gives you visual suggestions on potential changes.</li>
-        </ul>
-        <li>YourView AI model helps you to:</li>
-        <ul>
-          <li>Reduce time for urban design.</li>
-          <li>Increase revenue.</li>
-        </ul>
-      </ol> 
+  <!-- Slide 1 -->
+  <div class="mySlides fade">
+    <div class="w3-container w3-light-gray" style="height:500px; padding:32px 16px" id="our mission">
+      <h3 class="w3-center">OUR MISSION</h3>
+      <p class="w3-center w3-large">
+        We provide freedom of access for all the citizens by reducing crime and harassment through urban planning.
+      </p>
+      <img src="/images/city_design.jpg" class="center" style="width:50%">
     </div>
-  </p>
-  
-</div>
+  </div>
 
-<div class="w3-container w3-light-grey" style="padding:32px 16px" id="goverment">
-
-  <h3 class="w3-center">GOVERNMENTS</h3>
-  
-  <p class="w3-center w3-large">
-    You will create a sustainable city and community. <br>
-
-    YouView AI model helps you to: <br>
-    <div class="center_align_list">
-      <ol>
-        <li>Have a crystal vision on safety and crimes in the city.</li>
-        <li>Create a smart budget for renewal of urban environment.</li>
-        <li>Reduce the rates of crime and harassment.</li>
-      </ol>
+  <!-- Slide 2 -->
+  <div class="mySlides fade">
+    <div class="w3-container w3-light-grey" style="height:500px; padding:32px 16px" id="city planners">
+      <h3 class="w3-center">SUSTAINABLE CITIES</h3>
+      <p class="w3-center w3-large">
+        YourView AI model helps urban planners and architects to design future cities with lower risk of crimes and harassment. <br>
+        What we offer to urban planners and architects: <br>
+        <div class="center_align_list">
+          <ol>
+            <li>You will reduce crime and harassment in future urban plans.</li>
+            <li>YourView AI model:</li>
+            <ul>
+              <li>Detects crime and harassment danger zones in your urban design.</li>
+              <li>Gives you visual suggestions on potential changes.</li>
+            </ul>
+            <li>YourView AI model helps you to:</li>
+            <ul>
+              <li>Reduce time for urban design.</li>
+              <li>Increase revenue.</li>
+            </ul>
+          </ol>
+        </div>
+      </p>
     </div>
-  </p>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="mySlides fade">
+    <div class="w3-container w3-light-grey" style="height:500px; padding:32px 16px" id="goverment">
+      <h3 class="w3-center">GOVERNMENTS</h3>
+      <p class="w3-center w3-large">
+        You will create a sustainable city and community. <br>
+        YouView AI model helps you to: <br>
+        <div class="center_align_list">
+          <ol>
+            <li>Have a crystal vision on safety and crimes in the city.</li>
+            <li>Create a smart budget for renewal of urban environment.</li>
+            <li>Reduce the rates of crime and harassment.</li>
+          </ol>
+        </div>
+      </p>
+    </div>
+  </div>
+
+  <!-- Next and previous buttons
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  -->
+
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
 </div>
+</div>
+
+<script>
+let slideIndex = 1;
+let timeoutID = 0;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  timeoutID = setTimeout(plusSlides, 5000, 1);
+}
+
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 37) {
+        clearTimeout(timeoutID)
+        plusSlides(-1);
+    }
+    else if(event.keyCode == 39) {
+        clearTimeout(timeoutID)
+        plusSlides(1);
+    }
+});
+</script>
 
 <!-- About Section -->
 <div class="w3-container" style="padding:128px 16px" id="about">
   <h3 class="w3-center">ABOUT THE COMPANY</h3>
   <p class="w3-center w3-large">Key features of our company</p>
   <div class="w3-row-padding w3-center" style="margin-top:64px">
-    <div class="w3-quarter">
-      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+    <div class="w3-quarter zoom-icon">
+      <i class="fa fa-lightbulb-o w3-margin-bottom w3-jumbo"></i>
       <p class="w3-large">Innovation</p>
       <p>Using the best technologies to design the future of our cities.</p>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter zoom-icon-red">
       <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
       <p class="w3-large">Passion</p>
       <p>Committed in heart and mind to make a positive impact on the safety of our society.</p>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter zoom-icon">
       <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
       <p class="w3-large">Diversity</p>
       <p>Willing to create a safer environment for all genders and races.</p>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter zoom-icon">
       <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
       <p class="w3-large">Support</p>
       <p>Working with the people for the people.</p>
@@ -213,14 +265,14 @@ body, html {
   <div class="w3-row-padding" style="margin-top:64px">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/images/franzi_face.jpg" alt="Franziska" style="width:100%" onclick="window.open('/people/franzi.html')">
+        <img src="/images/franzi_face.jpg" alt="Franziska" onclick="window.open('https://www.linkedin.com/in/franziska-vogg-88726023a/')" style="width:100%">
         <div class="w3-container">
           <h3>Franziska Vogg</h3>
           <p class="w3-opacity">Criminology researcher</p>
           <p>Following her research on sexual violence and consent, Franzi intends to make a difference in the occurrence and perception of related crimes and transgressions. 
             (The empowerment of victims and endangered societal groups is one of the features she values most about the concept of the YourView model). 
             She is responsible for overseeing the company's administrative operations and strategic development in order to meet short- and long-term objectives.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:franzi.vogg@yahoo.com';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
@@ -234,13 +286,13 @@ body, html {
             He's capable of providing a data solution for any problem in a matter of minutes. Nevertheless he spends most of his time dreaming and playing music. 
             In YourView he aims to provide the newest AI and Computer Vision solutions in order to keep our technology updated to the state of the art; 
             moreover he can't stop talking about data management and data as a service, so YourView never falls back in time.  </p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:amolina@cvc.uab.cat';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/images/gerard_face.jpeg" alt="Gerard" onclick="window.open('/people/gerard.html')" style="width:100%">
+        <img src="/images/gerard_face.jpeg" alt="Gerard" onclick="window.open('https://www.linkedin.com/in/gerard-jover-pujol/')" style="width:100%">
         <div class="w3-container">
           <h3>Gerard Jover</h3>
           <p class="w3-opacity">Machine Learning Engineer</p>
@@ -248,92 +300,44 @@ body, html {
             to design end-to-end solutions acording to the users requirements. His role in the company is to design the architecture of the big data software and supervise
             the AI algorithms. 
           </p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:gerard.jover2000@gmail.com';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<p></p>
-
 <!-- Support Team Section -->
-
-<div class="w3-container" style="padding:32px 16px" id="team">
+<div class="w3-container" style="padding:32px 16px" id="support team">
   <h3 class="w3-center">SUPPORT TEAM</h3>
   <p class="w3-center w3-large">The ones who cheer this company</p>
   <div class="w3-row-padding" style="margin-top:64px">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/images/elnaz_face.jpg" alt="Elham" onclick="window.open('/people/elnaz.html')" style="width:100%">
+        <img src="/images/elnaz_face.jpg" alt="Elham" onclick="window.open('https://www.linkedin.com/in/dr-elnaznouri/')" style="width:100%">
         <div class="w3-container">
           <h3>Elham Nouri</h3>
           <p class="w3-opacity">City design and gender equality studies.</p>
           <p>Elnaz works in the managerial capacity. She has the DDS and MPH degree with background in research on sexual violence and gender equity. 
             With experience running her own business, she is the drive behind our networking and business strategy.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:Elham.Nouri@haw-hamburg.de';"><i class="fa fa-envelope"></i> Contact</button></p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-<!-- Skills Section 
-<div class="w3-container w3-light-grey w3-padding-64">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h3>Our Skills.</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-col m6">
-      <p class="w3-wide"><i class="fa fa-camera w3-margin-right"></i>Photography</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:90%">90%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-desktop w3-margin-right"></i>Web Design</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-photo w3-margin-right"></i>Photoshop</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:75%">75%</div>
-      </div>
-    </div>
-  </div>
-</div>
--->
 
 <!-- Contact Section -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
   <h3 class="w3-center">CONTACT</h3>
   <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
   <div class="w3-center" style="margin-top:48px">
-    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Hamburg, DE & Barcelona, Spain</p>
-    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>Email: admin@yourviewai.com</p>
-    <p><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right"></i>https://www.linkedin.com/company/yourview-ai</p>
-    <!-- PHONE
-    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+    <div class="zoom-icon"><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right" id="location" onclick="window.open('https://www.google.com/maps/d/embed?mid=14KTqDiEWxGZzAU3Rqt4vow-nSUI&hl=en&ehbc=2E312F')"></i>Hamburg, DE & Barcelona, Spain</div>
+    <!-- Add map
+    <iframe src="https://www.google.com/maps/d/embed?mid=14KTqDiEWxGZzAU3Rqt4vow-nSUI&hl=en&ehbc=2E312F" width="640" height="480"></iframe>
     -->
-    <!-- SEND DIRECT MESSAGE (php)
-    <br>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
-      <p>
-        <button class="w3-button w3-black" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </p>
-    </form>
-    -->
+    <div class="zoom-icon"><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right" id="email" onclick="location.href = 'mailto:admin@yourviewai.com';"></i>Email: admin@yourviewai.com</div>
+    <div class="zoom-icon"><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right" id="LinkedIn" onclick="window.open('https://www.linkedin.com/company/yourview-ai')"></i>https://www.linkedin.com/company/yourview-ai</div>
     <!-- Image of location/map 
     <img src="/images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
     -->
