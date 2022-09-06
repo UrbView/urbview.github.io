@@ -4,11 +4,13 @@ div.center_align_list {
 	}
 ul { 
 	display: inline-block; 
-	text-align: left; 
+	text-align: left;
+	font-size:18px;
 	}
 ol { 
     display: inline-block; 
-    text-align: left; 
+    text-align: left;
+    font-size:18px;
     }
 
 /* Center image */
