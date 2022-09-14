@@ -1,4 +1,9 @@
 /* List format */
+.videowrapper { 
+  display: block;
+  margin: 0 auto;
+}
+
 div.center_align_list {
 	text-align: center;
 	}
