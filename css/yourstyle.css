@@ -1,4 +1,11 @@
 /* List format */
+iframe.videowrapper {
+  display: block;
+  margin: 0 auto;
+  width: 1024px;
+  height: 630px;
+}
+
 div.center_align_list {
 	text-align: center;
 	}
@@ -181,4 +188,11 @@ ol {
 .zoom-icon-red:hover i {
     transform: scale(1.2);
     color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  iframe.videowrapper {
+    width: 256px;
+    height: 150px;
+  }
 }
