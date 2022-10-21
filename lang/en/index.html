@@ -4,15 +4,13 @@
 <title>UrbView</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3.css">
+<link rel="stylesheet" href="/css/urbstyle.css">
+<link rel="stylesheet" href="/css/custom-style.css">
 <link rel="stylesheet" href="/css/raleway-font.css">
 <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/yourstyle.css">
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-/* TODO: 'MORE pages'*/
 
 body, html {
   height: 100%;
@@ -23,11 +21,11 @@ body, html {
 .bgimg-1 {
   background-position: center;
   background-size: cover;
-  background-image: url("/images/backgrounds/street-horizontal.jpg");
+  background-image: url("/images/header/header-image.jpg");
   min-height: 100%;
 }
 
-.w3-bar .w3-button {
+.urbstyle-bar .urbstyle-button {
   padding: 16px;
 }
 </style>
@@ -35,12 +33,12 @@ body, html {
 
 <body>
 <!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
+<div class="urbstyle-top">
+  <div class="urbstyle-bar urbstyle-white urbstyle-card" id="myNavbar">
 
     <!-- Left-sided language selector
-    <div class="w3-left-center">
-      <select name="langs" id="langs" class="w3-bar-item w3-button" onchange="location.href = this.value">
+    <div class="urbstyle-left-center">
+      <select name="langs" id="langs" class="urbstyle-bar-item urbstyle-button" onchange="location.href = this.value">
         <option onclick="" value="/lang/du/">German 🇩🇪 </option>
         <option selected value="/lang/en/">English 🇬🇧 </option>
         <option onclick="" value="/lang/cat/">Catalan </option>
@@ -49,87 +47,89 @@ body, html {
     -->
 
     <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+    <div class="urbstyle-right urbstyle-hide-small">
+      <a href="#about" class="urbstyle-bar-item urbstyle-button">ABOUT</a>
+      <a href="#team" class="urbstyle-bar-item urbstyle-button"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#work" class="urbstyle-bar-item urbstyle-button"><i class="fa fa-th"></i> WORK</a>
+      <a href="#contact" class="urbstyle-bar-item urbstyle-button"><i class="fa fa-envelope"></i> CONTACT</a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+    <a href="javascript:void(0)" class="urbstyle-bar-item urbstyle-button urbstyle-right urbstyle-hide-large urbstyle-hide-medium" onclick="urbstyle_open()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
 </div>
 
 <!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
-  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+<nav class="urbstyle-sidebar urbstyle-bar-block urbstyle-black urbstyle-card urbstyle-animate-left urbstyle-hide-medium urbstyle-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="urbstyle_close()" class="urbstyle-bar-item urbstyle-button urbstyle-large urbstyle-padding-16">Close ×</a>
+  <a href="#about" onclick="urbstyle_close()" class="urbstyle-bar-item urbstyle-button">ABOUT</a>
+  <a href="#work" onclick="urbstyle_close()" class="urbstyle-bar-item urbstyle-button">WORK</a>
+  <a href="#team" onclick="urbstyle_close()" class="urbstyle-bar-item urbstyle-button">TEAM</a>
+  <a href="#contact" onclick="urbstyle_close()" class="urbstyle-bar-item urbstyle-button">CONTACT</a>
 </nav>
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-left w3-text-white" style="padding:48px; ">
-    <span class="w3-jumbo w3-hide-small" style = "text-shadow: 0px 0px 5px black; backdrop-filter: blur(1px);">UrbView</span><br>
-    <span class="w3-xxlarge w3-hide-large w3-hide-medium">UrbView</span><br>
-    <span class="w3-large" style = "text-shadow: 0px 0px 1px black; backdrop-filter: blur(1px);">Designing cities for all genders and colours.</span>
-    <p><a href="#work" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more about our projects</a></p>
+<header class="bgimg-1 urbstyle-display-container urbstyle-grayscale-min" id="home">
+  <div class="urbstyle-display-left urbstyle-text-white" style="padding:48px; ">
+    <span class="urbstyle-jumbo urbstyle-hide-small" style = "text-shadow: 0px 0px 5px black; backdrop-filter: blur(1px);">UrbView</span><br>
+    <span class="urbstyle-xxlarge urbstyle-hide-large urbstyle-hide-medium">UrbView</span><br>
+    <span class="urbstyle-large" style = "text-shadow: 0px 0px 1px black; backdrop-filter: blur(1px);">Designing cities for all genders and colours.</span>
+    <p><a href="#work" class="urbstyle-button urbstyle-white urbstyle-padding-large urbstyle-large urbstyle-margin-top urbstyle-opacity urbstyle-hover-opacity-off">Learn more about our projects</a></p>
   </div>
 </header>
 
-<div class="w3-container" style="padding:16px 16px" id="video">
-  <h2 class="w3-center">BREAKING NEWS!</h2>
-  <h2 class="w3-center w3-large">Vote for us!</h2>
-  <p class="w3-center"> UrbView has been awarded with the Social Impact Award jury award! Find more information in our LinkedIn page!</a>.</p>
-  <iframe  class="videowrapper" src="https://www.linkedin.com/embed/feed/update/urn:li:share:6986027692626227200" allowfullscreen="" title="Publicación integrada" width="504" height="541" frameborder="0"></iframe>
-</div>
-
 <!-- Brief introduction -->
-<div class="w3-container w3-center" style="padding:64px 32px" id="UrbView description">
+<div class="urbstyle-container urbstyle-center" style="padding:64px 32px" id="description">
   <h2>
     The UrbView mission is to incorporate the prevention of crime and sexual harassment <br>
     in the urban planning process by providing innovative tools based on AI technology.
   </h2>
 </div>
 
+<!-- Latest news -->
+<div class="urbstyle-container urbstyle-center urbstyle-light-gray" style="padding:64px 32px" id="latest news">
+  <h2>LATEST NEWS</h2>
+  <h3>We're excited to announce that UrbView has been awarded with the <b>Social Impact Award jury award!</b>.</h3>
+  <p class="urbstyle-center urbstyle-large">Find more information in our LinkedIn page!</a>.</p>
+  <iframe class="videowrapper" src="https://www.linkedin.com/embed/feed/update/urn:li:share:6986027692626227200" allowfullscreen="" title="Publicación integrada" width="504" height="541" frameborder="0"></iframe>
+</div>
+
+<!-- Video -->
+<div class="urbstyle-container urbstyle-center" style="padding:64px 32px" id="video">
+  <h2>The Urbview mission</h2>
+  <h3>The UrbView mission is to incorporate the prevention of crime and sexual harassment in the urban planning <br>
+    process by providing innovative tools based on artificial intelligence technology.</h3>
+  <iframe class="videowrapper" style="width:75%; padding:8px 8px" src="https://www.youtube.com/embed/TyAJl_N1Jck?controls=0" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"></iframe>
+</div>
 
 <!-- Slideshow container (arrow slider) -->
-<div class="w3-container w3-light-gray" style="padding:32px 16px;" id="introduction">
+<div class="urbstyle-container urbstyle-light-gray" style="padding:64px 32px" id="introduction">
   <div class="slideshow-container">
-
   <!-- Slide 1 -->
   <div class="mySlides fade">
-    <div class="w3-container w3-light-gray" id="the problem" style="height: 300px">
-      <h3 class="w3-center">THE PROBLEM</h3>
-      <p class="w3-center w3-large">
-        <!-- Street harassment is beyond a safety problem for women and LGBTQ+ members. It affects victims in different areas of their life.
-        The psychological burden manifests itself in victims’ choices regarding workplace and education.
-        It creates an economic burden on women and vulnerable groups as it leads them to choose more expensive and less sustainable means of transport. -->
+    <div class="urbstyle-container urbstyle-light-gray" id="the problem" style="margin:0 auto">
+      <h3 class="urbstyle-center">THE PROBLEM</h3>
+      <p class="urbstyle-center urbstyle-large">
         The lack of safety in public spaces that affects some groups more than others is a major obstacle on the road to gender equity.
       </p>
     </div>
   </div>
-
   <!-- Slide 2 -->
   <div class="mySlides fade">
-    <div class="w3-container w3-light-grey" id="our vision" style="height: 300px">
-      <h3 class="w3-center">OUR VISION</h3>
-      <p class="w3-center w3-large">
+    <div class="urbstyle-container urbstyle-light-grey" id="our vision" style="margin:0 auto">
+      <h3 class="urbstyle-center">OUR VISION</h3>
+      <p class="urbstyle-center urbstyle-large">
         Creating an environment in which people of all groups feel safe enough to move around freely without restricting themselves in their freedom of experience of the city.
       </p>
     </div>
   </div>
-
   <!-- Slide 3 -->
   <div class="mySlides fade">
-    <div class="w3-container w3-light-grey" id="our mission" style="height: 300px">
-      <h3 class="w3-center">OUR MISSION</h3>
-      <p class="w3-center w3-large">
+    <div class="urbstyle-container urbstyle-light-grey" id="our mission" style="margin:0 auto">
+      <h3 class="urbstyle-center">OUR MISSION</h3>
+      <p class="urbstyle-center urbstyle-large">
         The UrbView mission is to incorporate the prevention of crime and sexual harassment in the urban planning process by providing innovative tools based on AI technology.
       </p>
     </div>
@@ -143,9 +143,9 @@ body, html {
 
   <!-- The dots/circles -->
   <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlideClick(1)"></span>
+    <span class="dot" onclick="currentSlideClick(2)"></span>
+    <span class="dot" onclick="currentSlideClick(3)"></span>
   </div>
 </div>
 </div>
@@ -157,6 +157,11 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
+}
+
+function currentSlideClick(n) {
+  clearTimeout(timeoutID)
+  showSlides(slideIndex = n);
 }
 
 function currentSlide(n) {
@@ -213,118 +218,115 @@ document.addEventListener('touchend', e => {
   touchendX = e.changedTouches[0].screenX;
   checkDirection();
 })
-
 </script>
 
 <!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
-  <h3 class="w3-center">ABOUT THE COMPANY</h3>
-  <p class="w3-center w3-large">Key features of our company</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px">
-    <div class="w3-quarter zoom-icon">
-      <i class="fa fa-lightbulb-o w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Innovation</p>
+<div class="urbstyle-container" style="padding:64px 32px" id="about">
+  <h3 class="urbstyle-center">ABOUT THE COMPANY</h3>
+  <p class="urbstyle-center urbstyle-large">Key features of our company</p>
+  <div class="urbstyle-row-padding urbstyle-center" style="margin-top:64px">
+    <div class="urbstyle-quarter zoom-icon">
+      <i class="fa fa-lightbulb-o urbstyle-margin-bottom urbstyle-jumbo"></i>
+      <p class="urbstyle-large">Innovation</p>
       <p>Using the best technologies to design the future of our cities.</p>
     </div>
-    <div class="w3-quarter zoom-icon-red">
-      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Passion</p>
+    <div class="urbstyle-quarter zoom-icon-red">
+      <i class="fa fa-heart urbstyle-margin-bottom urbstyle-jumbo"></i>
+      <p class="urbstyle-large">Passion</p>
       <p>Committed in heart and mind to make a positive impact on the safety of our society.</p>
     </div>
-    <div class="w3-quarter zoom-icon">
-      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Diversity</p>
+    <div class="urbstyle-quarter zoom-icon">
+      <i class="fa fa-diamond urbstyle-margin-bottom urbstyle-jumbo"></i>
+      <p class="urbstyle-large">Diversity</p>
       <p>Willing to create a safer environment for all genders and ethnics.</p>
     </div>
-    <div class="w3-quarter zoom-icon">
-      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Support</p>
+    <div class="urbstyle-quarter zoom-icon">
+      <i class="fa fa-cog urbstyle-margin-bottom urbstyle-jumbo"></i>
+      <p class="urbstyle-large">Support</p>
       <p>Working with the people for the people.</p>
 
     </div>
  </div>
- The idea behind UrbView goes back to very emotional, personal experiences. We, as the founders of UrbView, care deeply about the physical and psychological wellbeing of our friends, our families and any citizen all around. We know what it feels like to be afraid to walk the streets in urban environments in which we do not feel safe. And we know how much damage street harassment can do. 
-Throughout our studies, we have focused specifically on issues like sexual violence, street harassment and crime in public spaces. The urgency of these problems that we perceived not only in society at large but as part of our personal history as well, is what brought us together and led to the creation of the UrbView project.
- 
+
 </div>
 
 <!-- Work Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 32px" id="work">
-  <h3 class="w3-center">OUR WORK: Combining Urban Planning with Artificial Intelligence and Crime Prevention</h3>
-  <p class="w3-center w3-large">Empowering cities and citizens with AI</p>
-  <div class="w3-center">
-    <p class="w3-large">Combining Urban Planning with Artificial Intelligence and Crime Prevention</p>
-    <p>With the help of UrbView, city planners, designers and architects can evaluate the safety of their design and are provided with the tools and suggestions to change it accordingly.
-      <br> Its use will significantly improve urban environments and help reduce the occurrence of street harassment and crime rates overall.
+<div class="urbstyle-container urbstyle-light-grey" style="padding:64px 32px" id="work">
+  <h3 class="urbstyle-center">OUR WORK: Combining Urban Planning with Artificial Intelligence and Crime Prevention</h3>
+  <p class="urbstyle-center urbstyle-large">Empowering cities and citizens with AI</p>
+  <div class="urbstyle-center">
+    <p class="urbstyle-large">Combining Urban Planning with Artificial Intelligence and Crime Prevention</p>
+    <p>With the help of UrbView, city planners, designers and architects can evaluate the safety of their design and are provided with the tools and suggestions to change it accordingly.<br>
+       Its use will significantly improve urban environments and help reduce the occurrence of street harassment and crime rates overall.
     </p>
   </div>
-  <div class="w3-center">
+  <div class="urbstyle-center">
     <figure>
-    <img class="w3-image w3-round-large" src="/images/panoramic_heatmap.png" alt="Heatmap original" width="300" height="194" >
+    <img class="urbstyle-image urbstyle-round-large" src="/images/panoramic_heatmap.png" alt="Heatmap original" width="300" height="194" >
     <figcaption>Fig.1 - Model response to original design.</figcaption>
     </figure>
     <figure>
-      <img class="w3-image w3-round-large" src="/images/panoramic_with_new_features_heatmap.png" alt="Heatmap new" width="300" height="194">
+      <img class="urbstyle-image urbstyle-round-large" src="/images/panoramic_with_new_features_heatmap.png" alt="Heatmap new" width="300" height="194">
       <figcaption>Fig.2 - Model response to safer design.</figcaption>
     </figure>
   </div>
 </div>
 
 <!-- Team Section -->
-<div class="w3-container" style="padding:32px 16px" id="team">
-  <h3 class="w3-center">THE TEAM</h3>
-  <p class="w3-center w3-large">The ones who run this company</p>
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="/images/franzi_face.jpg" alt="Franziska" onclick="window.open('https://www.linkedin.com/in/franziska-vogg-88726023a/')" style="width:100%">
-        <div class="w3-container">
+<div class="urbstyle-container" style="padding:64px 32px" id="team">
+  <h3 class="urbstyle-center">THE TEAM</h3>
+  <p class="urbstyle-center urbstyle-large">The ones who run this company</p>
+  <div class="urbstyle-row-padding" style="margin-top:64px">
+    <div class="urbstyle-col l3 m6 urbstyle-margin-bottom">
+      <div class="urbstyle-card">
+        <img src="/images/team/franzi_face.jpg" alt="Franziska" onclick="window.open('https://www.linkedin.com/in/franziska-vogg-88726023a/')" onmouseover="this.style.cursor='pointer'" style="width: 100%; margin:0 auto">
+        <div class="urbstyle-container">
           <h3>Franziska Vogg</h3>
-          <p class="w3-opacity">Criminology researcher</p>
+          <p class="urbstyle-opacity">Criminology researcher</p>
           <p>Following her research on sexual violence and consent, Franzi intends to make a difference in the occurrence and perception of related crimes and transgressions. 
             (The empowerment of victims and endangered societal groups is one of the features she values most about the concept of the UrbView model).
             She is responsible for overseeing the company's administrative operations and strategic development in order to meet short- and long-term objectives.</p>
-          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:franzi.vogg@yahoo.com';"><i class="fa fa-envelope"></i> Contact </button></p>
+          <p><button class="urbstyle-button urbstyle-light-grey urbstyle-block" onclick="location.href = 'mailto:franzi.vogg@yahoo.com';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="/images/tony_stark_face.jpeg" alt="Adri" onclick="window.open('/people/adri.html')" style="width:100%">
-        <div class="w3-container">
+    <div class="urbstyle-col l3 m6 urbstyle-margin-bottom">
+      <div class="urbstyle-card">
+        <img src="/images/team/tony_stark_face.jpeg" alt="Adri" onclick="window.open('/people/adri.html')" onmouseover="this.style.cursor='pointer'" style="width: 100%; margin:0 auto">
+        <div class="urbstyle-container">
           <h3>Adria Molina</h3>
-          <p class="w3-opacity">Computer Vision & AI Researcher</p>
+          <p class="urbstyle-opacity">Computer Vision & AI Researcher</p>
           <p>Adri is a computer vision researcher at Computer Vision Center, Barcelona. 
             He's capable of providing a data solution for any problem in a matter of minutes. Nevertheless he spends most of his time dreaming and playing music. 
             In UrbView he aims to provide the newest AI and Computer Vision solutions in order to keep our technology updated to the state of the art;
             moreover he can't stop talking about data management and data as a service, so UrbView never falls back in time.  </p>
-          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:amolina@cvc.uab.cat';"><i class="fa fa-envelope"></i> Contact </button></p>
+          <p><button class="urbstyle-button urbstyle-light-grey urbstyle-block" onclick="location.href = 'mailto:amolina@cvc.uab.cat';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="/images/gerard_face.jpeg" alt="Gerard" onclick="window.open('https://www.linkedin.com/in/gerard-jover-pujol/')" style="width:100%;">
-        <div class="w3-container">
+    <div class="urbstyle-col l3 m6 urbstyle-margin-bottom">
+      <div class="urbstyle-card">
+        <img src="/images/team/gerard_face.png" alt="Gerard" onclick="window.open('https://www.linkedin.com/in/gerard-jover-pujol/')" onmouseover="this.style.cursor='pointer'" style="width: 100%; margin:0 auto">
+        <div class="urbstyle-container">
           <h3>Gerard Jover</h3>
-          <p class="w3-opacity">Machine Learning Engineer</p>
+          <p class="urbstyle-opacity">Machine Learning Engineer</p>
           <p>Gerard has the skills needed to develop the algorithms that UrbView uses. His studies in data engineering and experience creating AI solutions allow him
-            to design end-to-end solutions acording to the users requirements. His role in the company is to design the architecture of the big data software and supervise
+            to design end-to-end solutions according to the users requirements. His role in the company is to design the architecture of the big data software and supervise
             the AI algorithms. 
           </p>
-          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:gerard.jover2000@gmail.com';"><i class="fa fa-envelope"></i> Contact </button></p>
+          <p><button class="urbstyle-button urbstyle-light-grey urbstyle-block" onclick="location.href = 'mailto:gerard.jover2000@gmail.com';"><i class="fa fa-envelope"></i> Contact </button></p>
         </div>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="/images/elnaz_face.jpg" alt="Elham" onclick="window.open('https://www.linkedin.com/in/dr-elnaznouri/')" style="width:100%">
-        <div class="w3-container">
+    <div class="urbstyle-col l3 m6 urbstyle-margin-bottom">
+      <div class="urbstyle-card">
+        <img src="/images/team/elnaz_face.jpg" alt="Elham" onclick="window.open('https://www.linkedin.com/in/dr-elnaznouri/')" onmouseover="this.style.cursor='pointer'" style="width: 100%; margin:0 auto">
+        <div class="urbstyle-container">
           <h3>Elham Nouri</h3>
-          <p class="w3-opacity">City design and gender equality studies.</p>
+          <p class="urbstyle-opacity">City design and gender equality studies.</p>
           <p>Elnaz works in the managerial capacity. She has the DDS and MPH degree with background in research on sexual violence and gender equity. 
             With experience running her own business, she is the drive behind our networking and business strategy.</p>
-          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href = 'mailto:Elham.Nouri@haw-hamburg.de';"><i class="fa fa-envelope"></i> Contact</button></p>
+          <p><button class="urbstyle-button urbstyle-light-grey urbstyle-block" onclick="location.href = 'mailto:Elham.Nouri@haw-hamburg.de';"><i class="fa fa-envelope"></i> Contact</button></p>
         </div>
       </div>
     </div>
@@ -333,21 +335,21 @@ Throughout our studies, we have focused specifically on issues like sexual viole
 
 
 <!-- Contact Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-  <div class="w3-row-padding">
-    <div class="w3-col m7">
-      <h3 class="w3-center">CONTACT</h3>
-      <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
-      <div class="w3-center" style="margin-top:48px">
-        <div class="zoom-icon"><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right" id="location" onclick="window.open('https://www.google.com/maps/d/embed?mid=14KTqDiEWxGZzAU3Rqt4vow-nSUI&hl=en&ehbc=2E312F')"></i>Hamburg, Germany & Barcelona, Spain</div>
-        <div class="zoom-icon"><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right" id="email" onclick="location.href = 'mailto:admin@urbview.com';"></i>Email: admin@urbview.com</div>
-        <div class="zoom-icon"><i class="fa fa-linkedin fa-fw w3-xxlarge w3-margin-right" id="LinkedIn" onclick="window.open('https://www.linkedin.com/company/urbview')"></i>https://www.linkedin.com/company/urbview</div>
+<div class="urbstyle-container urbstyle-light-grey" style="padding:128px 16px" id="contact">
+  <div class="urbstyle-row-padding">
+    <div class="urbstyle-col m7">
+      <h3 class="urbstyle-center">CONTACT</h3>
+      <p class="urbstyle-center urbstyle-large">Lets get in touch. Send us a message:</p>
+      <div class="urbstyle-center" style="margin-top:48px">
+        <div class="zoom-icon"><i class="fa fa-map-marker fa-fw urbstyle-xxlarge urbstyle-margin-right" id="location" onclick="window.open('https://www.google.com/maps/d/embed?mid=14KTqDiEWxGZzAU3Rqt4vow-nSUI&hl=en&ehbc=2E312F')"></i>Hamburg, Germany & Barcelona, Spain</div>
+        <div class="zoom-icon"><i class="fa fa-envelope fa-fw urbstyle-xxlarge urbstyle-margin-right" id="email" onclick="location.href = 'mailto:admin@urbview.com';"></i>Email: admin@urbview.com</div>
+        <div class="zoom-icon"><i class="fa fa-linkedin fa-fw urbstyle-xxlarge urbstyle-margin-right" id="LinkedIn" onclick="window.open('https://www.linkedin.com/company/urbview')"></i>https://www.linkedin.com/company/urbview</div>
       </div>
     </div>
-    <div class="w3-col m3">
-      <h3 class="w3-center">PARTNERS</h3>
-      <img src="/images/beyourpilot_logo_nobg.png" class="w3-image" style="width:100%">
-      <img src="/images/sia_logo_nobg.png" class="w3-image" style="width:100%">
+    <div class="urbstyle-col m3">
+      <h3 class="urbstyle-center">PARTNERS</h3>
+      <img src="/images/beyourpilot_logo_nobg.png" class="urbstyle-image" style="width:100%">
+      <img src="/images/sia_logo_nobg.png" class="urbstyle-image" style="width:100%">
     </div>
   </div>
 </div>
@@ -356,18 +358,18 @@ Throughout our studies, we have focused specifically on issues like sexual viole
 
 </p>
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <div class="w3-xlarge w3-section">
+<footer class="urbstyle-center urbstyle-black urbstyle-padding-64">
+  <a href="#home" class="urbstyle-button urbstyle-light-grey"><i class="fa fa-arrow-up urbstyle-margin-right"></i>To the top</a>
+  <div class="urbstyle-xlarge urbstyle-section">
     <!-- Other social media-
     <a href="https://www.linkedin.com/company/urbview" title="UrbView linkedin" target="_blank">
       <i class="fa fa-lin    kedin"></i>
     </a>
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-facebook-official urbstyle-hover-opacity"></i>
+    <i class="fa fa-instagram urbstyle-hover-opacity"></i>
+    <i class="fa fa-snapchat urbstyle-hover-opacity"></i>
+    <i class="fa fa-pinterest-p urbstyle-hover-opacity"></i>
+    <i class="fa fa-twitter urbstyle-hover-opacity"></i>
     --->
     </div>
   </footer>
@@ -385,7 +387,7 @@ function onClick(element) {
 // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
 
-function w3_open() {
+function urbstyle_open() {
   if (mySidebar.style.display === 'block') {
     mySidebar.style.display = 'none';
   } else {
@@ -394,7 +396,7 @@ function w3_open() {
 }
 
 // Close the sidebar with the close button
-function w3_close() {
+function urbstyle_close() {
     mySidebar.style.display = "none";
 }
 </script>
