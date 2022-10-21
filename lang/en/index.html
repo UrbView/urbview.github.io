@@ -80,24 +80,6 @@ body, html {
   </div>
 </header>
 
-<!-- Latest news 
-<div class="urbstyle-container" style="padding:16px 16px" id="Latest videos">
-  <h2 class="urbstyle-center">BREAKING NEWS!</h2>
-  <h2 class="urbstyle-center urbstyle-large">Vote for us!</h2>
-  <p class="urbstyle-center"> You can vote for us in the Social Impact Award following this <a href = "https://germany.socialimpactaward.net/">link</a>.</p>
-  <iframe class="videowrapper" src="https://www.youtube.com/embed/TyAJl_N1Jck?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-</div>
--->
-
-<!-- Video
-<div class="urbstyle-container" style="padding:16px 16px" id="Latest videos">
-  <h2 class="urbstyle-center">BREAKING NEWS!</h2>
-  <h2 class="urbstyle-center urbstyle-large">Vote for us!</h2>
-  <p class="urbstyle-center"> You can vote for us in the Social Impact Award following this <a href = "https://germany.socialimpactaward.net/">link</a>.</p>
-  <iframe class="videowrapper" src="https://www.youtube.com/embed/TyAJl_N1Jck?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-</div>
--->
-
 <!-- Brief introduction -->
 <div class="urbstyle-container urbstyle-center" style="padding:64px 32px" id="description">
   <h2>
@@ -106,23 +88,34 @@ body, html {
   </h2>
 </div>
 
+<!-- Latest news -->
+<div class="urbstyle-container urbstyle-center urbstyle-light-gray" style="padding:64px 32px" id="latest news">
+  <h2>LATEST NEWS</h2>
+  <h3>We're excited to announce that UrbView has been awarded with the <b>Social Impact Award jury award!</b>.</h3>
+  <p class="urbstyle-center urbstyle-large">Congratulations to all our members for this prize which will help them start their venture.</p>
+  <img class="urbstyle-image" src="/images/news/SIA_prize.jpg" alt="SIA prize" style="width:75%; padding:8px 8px">
+</div>
+
+<!-- Video -->
+<div class="urbstyle-container urbstyle-center" style="padding:64px 32px" id="video">
+  <h2>The Urbview mission</h2>
+  <h3>The UrbView mission is to incorporate the prevention of crime and sexual harassment in the urban planning <br>
+    process by providing innovative tools based on artificial intelligence technology.</h3>
+  <iframe class="videowrapper" style="width:75%; padding:8px 8px" src="https://www.youtube.com/embed/TyAJl_N1Jck?controls=0" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"></iframe>
+</div>
+
 <!-- Slideshow container (arrow slider) -->
 <div class="urbstyle-container urbstyle-light-gray" style="padding:64px 32px" id="introduction">
   <div class="slideshow-container">
-
   <!-- Slide 1 -->
   <div class="mySlides fade">
     <div class="urbstyle-container urbstyle-light-gray" id="the problem" style="margin:0 auto">
       <h3 class="urbstyle-center">THE PROBLEM</h3>
       <p class="urbstyle-center urbstyle-large">
-        <!-- Street harassment is beyond a safety problem for women and LGBTQ+ members. It affects victims in different areas of their life.
-        The psychological burden manifests itself in victims’ choices regarding workplace and education.
-        It creates an economic burden on women and vulnerable groups as it leads them to choose more expensive and less sustainable means of transport. -->
         The lack of safety in public spaces that affects some groups more than others is a major obstacle on the road to gender equity.
       </p>
     </div>
   </div>
-
   <!-- Slide 2 -->
   <div class="mySlides fade">
     <div class="urbstyle-container urbstyle-light-grey" id="our vision" style="margin:0 auto">
@@ -132,7 +125,6 @@ body, html {
       </p>
     </div>
   </div>
-
   <!-- Slide 3 -->
   <div class="mySlides fade">
     <div class="urbstyle-container urbstyle-light-grey" id="our mission" style="margin:0 auto">
@@ -151,9 +143,9 @@ body, html {
 
   <!-- The dots/circles -->
   <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlideClick(1)"></span>
+    <span class="dot" onclick="currentSlideClick(2)"></span>
+    <span class="dot" onclick="currentSlideClick(3)"></span>
   </div>
 </div>
 </div>
@@ -165,6 +157,11 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
+}
+
+function currentSlideClick(n) {
+  clearTimeout(timeoutID)
+  showSlides(slideIndex = n);
 }
 
 function currentSlide(n) {
@@ -221,7 +218,6 @@ document.addEventListener('touchend', e => {
   touchendX = e.changedTouches[0].screenX;
   checkDirection();
 })
-
 </script>
 
 <!-- About Section -->
