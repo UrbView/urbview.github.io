@@ -12,8 +12,8 @@
 
     <div id="map" style="height: 180px; width: 180px; margin-left: 50%;"></div>
 
-    <button>Ask UrbView!</button>
-
+    <button onclick="alert(document.getElementById('last-clicked-coord').innerHTML)">Ask UrbView!</button>
+    <a id = 'last-clicked-coord' style="display: none;"></a>
     <script>
 
         var map = L.map('map').setView([51.505, -0.09], 13);
@@ -23,7 +23,7 @@
     }).addTo(map);
 
     function onMapClick(e) {
-            alert("You clicked the map at " + e.latlng);
+            document.getElementById('last-clicked-coord').innerHTML = e.latlng
         }
 
         map.on('click', onMapClick);
