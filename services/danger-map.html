@@ -1,34 +1,60 @@
 <html>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-    crossorigin=""/>
+    
+    <head>
 
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
-
-    <h3>Test Map For Us Cutre Under Developement</h3>
-
-    <div id="map" style="height: 420px; width: 420px; margin-left: 50%;"></div>
-
-    <button onclick="alert(document.getElementById('last-clicked-coord').innerHTML)" style=" margin-left: 50%;">Ask UrbView!</button>
-    <a id = 'last-clicked-coord' style="display: none;"></a>
-    <script>
-
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    function onMapClick(e) {
-            document.getElementById('last-clicked-coord').innerHTML = e.latlng
-        }
-
-        map.on('click', onMapClick);
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+        <link rel="stylesheet" href="/css/urbstyle.css"/>
+    
 
 
-    </script>
+    </head>
+
+    
+
+    <body style="background-color: aquamarine; font-family: urbfont;">
+
+
+        <div style="background-color: whitesmoke;">
+
+            <svg mlns="/style/svg/global/UI_Assets-12.svg">
+
+
+            </svg>
+
+    
+        </div>
+        
+
+        <div id="map" style="height: 420px; width: 420px; margin-left: 50%;"></div>
+
+        <button onclick="alert(document.getElementById('last-clicked-coord').innerHTML)" style=" margin-left: 50%;">Ask UrbView!</button>
+        <a id = 'last-clicked-coord' style="display: none;"></a>
+        <script>
+    
+            var map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    
+        function onMapClick(e) {
+                document.getElementById('last-clicked-coord').innerHTML = e.latlng
+            }
+    
+            map.on('click', onMapClick);
+    
+    
+        </script>
+
+
+    </body>
+
+
 
 </html>
