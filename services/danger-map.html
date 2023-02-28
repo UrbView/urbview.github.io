@@ -160,7 +160,9 @@
 
                 </div>
 
-                <input type="text" style="border-color: white; box-shadow: none; width: 50%; margin-left: 10%; border-radius: 10px;">                
+                <input type="text" id="address-input" style="border-color: white; box-shadow: none; width: 50%; margin-left: 10%; border-radius: 10px;">
+                <button type="button" onclick="search()">Search</button>
+
 
             </div>
             <div class="column">
@@ -182,6 +184,17 @@
 
         <script>
 
+            const addressInput = document.getElementById('address-input');
+            addressInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    search();
+                }
+            });
+
+            function search() {
+                # Hardcoded Auf den Wöörden 19, 22359 Hamburg, Germany coords
+                map.setView([53.657439968356414, 10.175339080682194], 16);
+            }
 
             var base_icon = L.icon({
                 iconUrl: '../style/png/v1/UI_Assets-03.png',
@@ -202,82 +215,71 @@
                 iconAnchor: [20, 50]
             })
 
-            var map = L.map('map').setView([53.657439968356414, 10.175339080682194], 16);
+            var map = L.map('map').setView([41.564021, 2.006508], 16);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-            maxZoom: 25,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+                maxZoom: 25,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
 
-        let markers = []
-        let stats = []
-        function onMapClick(e) {
-            document.getElementById('last-clicked-coord').innerHTML = e.latlng;
-            var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
-            marker.bindPopup("Lat: " + e.latlng.lat + "<br>" + "Long: " + e.latlng.lng);
-            markers.push(marker);
-            setTimeout(function() {
-                ask_urbview();
-            }, 2000);
-            console.log(markers);
-        }
-    
-        map.on('click', onMapClick);
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-
-        function calc_stats(){
-
-            let green_stat_buffer = 0
-            stats.forEach(e => green_stat_buffer += e)
-            p = 1 - green_stat_buffer / stats.length
-            document.getElementsByClassName("green")[0].style.width = p * 100 + "%" 
-            document.getElementsByClassName("green")[0].percentage = p * 100 + "%" 
-
-            document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
-
-
-
-
-
+            let markers = []
+            let stats = []
+            function onMapClick(e) {
+                document.getElementById('last-clicked-coord').innerHTML = e.latlng;
+                var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
+                marker.bindPopup("Lat: " + e.latlng.lat + "<br>" + "Long: " + e.latlng.lng);
+                markers.push(marker);
+                setTimeout(function() {
+                    ask_urbview();
+                }, 2000);
+                console.log(markers);
             }
-        function ask_urbview(){
 
-            // Just for recording the demo and exemplify what we intend
-            // Replace for the API endpoint and receive the text on production
+            map.on('click', onMapClick);
 
-            var rangeArray = Array.from({length: markers.length}, (v, i) => i);
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
 
-            for (var i = 0; i < rangeArray.length; i++) {
-                x = (Math.floor(Math.random() * 2) == 0);
-                    if(x){
-                        icon = red_icon
-                        stats.push(0)
-                    }else{
-                        icon = green_icon
-                        stats.push(1)
-                    }
+            function calc_stats(){
 
-                console.log(markers)
+                let green_stat_buffer = 0
+                stats.forEach(e => green_stat_buffer += e)
+                p = 1 - green_stat_buffer / stats.length;
+                document.getElementsByClassName("green")[0].style.width = p * 100 + "%";
+                document.getElementsByClassName("green")[0].percentage = p * 100 + "%";
 
-                m = markers.pop(0)
-                console.log(markers)
-                m.setIcon(icon)
+                document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%";
+
                 }
-            calc_stats()
-        }
 
-    
-    
+            function ask_urbview(){
+
+                // Just for recording the demo and exemplify what we intend
+                // Replace for the API endpoint and receive the text on production
+
+                var rangeArray = Array.from({length: markers.length}, (v, i) => i);
+
+                for (var i = 0; i < rangeArray.length; i++) {
+                    x = (Math.floor(Math.random() * 2) == 0);
+                        if(x){
+                            icon = red_icon
+                            stats.push(0)
+                        }else{
+                            icon = green_icon
+                            stats.push(1)
+                        }
+
+                    console.log(markers)
+
+                    m = markers.pop(0)
+                    console.log(markers)
+                    m.setIcon(icon)
+                    }
+                calc_stats()
+            }
+
         </script>
 
-
-    
-
     </body>
-
-
 
 </html>
