@@ -72,32 +72,23 @@
     
 
             var base_icon = L.icon({
-                iconUrl: '/style/svg/v1/UI_Assets-03.svg'
+                iconUrl: '../style/png/v1/UI_Assets-03.png',
+                iconSize: [40, 50],
+                iconAnchor: [20, 50]
             })
 
             var green_icon =  L.icon({
-                iconUrl: '/style/svg/v1/UI_Assets-04.svg'
+                iconUrl: '../style/png/v1/UI_Assets-04.png',
+                iconSize: [40, 50],
+                iconAnchor: [20, 50]
             })
 
             var red_icon =  L.icon({
-                iconUrl: '/style/svg/v1/UI_Assets-05.svg'
+                iconUrl: '../style/png/v1/UI_Assets-05.png',
+                iconSize: [40, 50],
+                iconAnchor: [20, 50]
             })
 
-            var cat_icon = L.icon({
-                iconUrl: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-                iconSize: [28, 28]
-            })
-
-            var cat_puke = L.icon({
-                iconUrl: 'https://images.squarespace-cdn.com/content/v1/5bde556a85ede155474934ac/1633624460940-A1S2V3Z2UAB70NIJQQJV/464255957-huge.jpg',
-                iconSize: [28, 28]
-            })
-
-            var finger_icon = L.icon({
-                iconUrl:  'https://em-content.zobj.net/thumbs/160/apple/325/backhand-index-pointing-down_1f447.png',
-                iconSize: [28, 28]
-            })
-           
             var map = L.map('map').setView([51.505, -0.09], 13);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -107,7 +98,7 @@
         let markers = []
         function onMapClick(e) {
             document.getElementById('last-clicked-coord').innerHTML = e.latlng
-            var marker = L.marker(e.latlng, {icon: finger_icon}).addTo(map);
+            var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
             markers.push(marker)
             console.log(markers)
         }
@@ -123,9 +114,9 @@
 
             x = (Math.floor(Math.random() * 2) == 0);
                 if(x){
-                    icon = cat_puke
+                    icon = red_icon
                 }else{
-                    icon = cat_icon
+                    icon = green_icon
                 }
 
             console.log(markers)
