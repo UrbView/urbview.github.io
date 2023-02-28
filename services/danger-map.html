@@ -234,9 +234,10 @@
             stats.forEach(e => green_stat_buffer += e)
             p = 1 - green_stat_buffer / stats.length
             document.getElementsByClassName("green")[0].style.width = p * 100 + "%" 
-            document.getElementsByClassName("green")[0].percentage = document.getElementsByClassName("green")[0].style.width 
+            document.getElementsByClassName("green")[0].setAttribute('percentage', document.getElementsByClassName("green")[0].style.width)
 
             document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
+            document.getElementsByClassName("red")[0].setAttribute('percentage', document.getElementsByClassName("red")[0].style.width)
 
 
 
