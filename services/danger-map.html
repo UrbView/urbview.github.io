@@ -192,7 +192,7 @@
             });
 
             function search() {
-                # Hardcoded Auf den Wöörden 19, 22359 Hamburg, Germany coords
+                <!--Hardcoded Auf den Wöörden 19, 22359 Hamburg, Germany coords-->
                 map.setView([53.657439968356414, 10.175339080682194], 16);
             }
 
@@ -240,18 +240,18 @@
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
 
-            function calc_stats(){
+            function calc_stats() {
 
-            let green_stat_buffer = 0
-            stats.forEach(e => green_stat_buffer += e)
-            p = 1 - green_stat_buffer / stats.length;
-            document.getElementsByClassName("green")[0].style.width = p * 100 + "%" 
-            document.getElementsByClassName("green")[0].setAttribute('percentage', document.getElementsByClassName("green")[0].style.width)
+                let green_stat_buffer = 0
+                stats.forEach(e => green_stat_buffer += e)
+                p = 1 - green_stat_buffer / stats.length;
+                document.getElementsByClassName("green")[0].style.width = p * 100 + "%"
+                document.getElementsByClassName("green")[0].setAttribute('percentage', document.getElementsByClassName("green")[0].style.width)
 
-            document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
-            document.getElementsByClassName("red")[0].setAttribute('percentage', document.getElementsByClassName("red")[0].style.width)
+                document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
+                document.getElementsByClassName("red")[0].setAttribute('percentage', document.getElementsByClassName("red")[0].style.width)
 
-                }
+            }
 
             function ask_urbview(){
 
