@@ -124,7 +124,8 @@
             var base_icon = L.icon({
                 iconUrl: '../style/png/v1/UI_Assets-03.png',
                 iconSize: [40, 50],
-                iconAnchor: [20, 50]
+                iconAnchor: [20, 50],
+                popupAnchor: [0, -50]
             })
 
             var green_icon =  L.icon({
@@ -144,18 +145,25 @@
             maxZoom: 25,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
-    
+
         let markers = []
         function onMapClick(e) {
-            document.getElementById('last-clicked-coord').innerHTML = e.latlng
+            document.getElementById('last-clicked-coord').innerHTML = e.latlng;
             var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
             marker.bindPopup("Coordinates: " + e.latlng.lat + ", " + e.latlng.lng);
-            markers.push(marker)
-            console.log(markers)
+            marker.openPopup();
+            markers.push(marker);
+            setTimeout(function() {
+                ask_urbview();
+            }, 2000);
+            console.log(markers);
         }
-            
     
         map.on('click', onMapClick);
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
         function ask_urbview(){
 
