@@ -158,9 +158,6 @@
                             </p>
                         </div>
 
-    
-
-
                 </div>
 
                 <input type="text" style="border-color: white; box-shadow: none; width: 50%; margin-left: 10%; border-radius: 10px;">                
@@ -215,8 +212,7 @@
         function onMapClick(e) {
             document.getElementById('last-clicked-coord').innerHTML = e.latlng;
             var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
-            marker.bindPopup("Coordinates: " + e.latlng.lat + ", " + e.latlng.lng);
-            marker.openPopup();
+            marker.bindPopup("Lat: " + e.latlng.lat + "<br>" + "Long: " + e.latlng.lng);
             markers.push(marker);
             setTimeout(function() {
                 ask_urbview();
