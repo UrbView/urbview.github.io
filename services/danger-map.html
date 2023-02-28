@@ -206,13 +206,17 @@
             var green_icon =  L.icon({
                 iconUrl: '../style/png/v1/UI_Assets-04.png',
                 iconSize: [40, 50],
-                iconAnchor: [20, 50]
+                iconAnchor: [20, 50],
+                iconAnchor: [20, 50],
+                popupAnchor: [0, -50]
             })
 
             var red_icon =  L.icon({
                 iconUrl: '../style/png/v1/UI_Assets-05.png',
                 iconSize: [40, 50],
-                iconAnchor: [20, 50]
+                iconAnchor: [20, 50],
+                iconAnchor: [20, 50],
+                popupAnchor: [0, -50]
             })
 
             var map = L.map('map').setView([41.564021, 2.006508], 16);
@@ -263,9 +267,11 @@
                 for (var i = 0; i < rangeArray.length; i++) {
                     x = (Math.floor(Math.random() * 2) == 0);
                         if(x){
+                            feeling = "good"
                             icon = red_icon
                             stats.push(0)
                         }else{
+                            feeling = "bad"
                             icon = green_icon
                             stats.push(1)
                         }
@@ -275,7 +281,12 @@
                     m = markers.pop(0)
                     console.log(markers)
                     m.setIcon(icon)
+                    if(feeling=="good"){
+                        m.bindPopup("I liked being there");
+                    }else{
+                        m.bindPopup("I felt insecure");
                     }
+                }
                 calc_stats()
             }
 
