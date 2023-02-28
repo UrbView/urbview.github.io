@@ -160,18 +160,28 @@
             // Just for recording the demo and exemplify what we intend
             // Replace for the API endpoint and receive the text on production
 
+            var rangeArray = Array.from({length: markers.length}, (v, i) => i);
 
-            x = (Math.floor(Math.random() * 2) == 0);
-                if(x){
-                    icon = red_icon
-                }else{
-                    icon = green_icon
-                }
+            for (var i = 0; i < rangeArray.length; i++) {
+                x = (Math.floor(Math.random() * 2) == 0);
+                    if(x){
+                        icon = red_icon
+                    }else{
+                        icon = green_icon
+                    }
 
-            console.log(markers)
-            m = markers.pop(0)
-            console.log(markers)
-            m.setIcon(icon)
+                console.log(markers)
+
+                m = markers.pop(0)
+                console.log(markers)
+                m.setIcon(icon)
+                }   
+            
+
+            
+            
+
+
 
         }
     
