@@ -1,6 +1,6 @@
 <style>
 .header {
-  background-color: whitesmoke;
+  background-color:white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -135,7 +135,7 @@
         </div>
 
         <div class="row">
-            <div class="column" style="background-color: rgb(164, 36, 36);">
+            <div class="column" style="background-color: whitesmoke">
 
 
                 <div style = "margin-left: 10%;">
@@ -146,22 +146,24 @@
                         Danger Map
     
                     </h2>
-                    <p style="font-family: urbfontlight;">
-                        Sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        <br>
-                        dolore magna aliquyam erat. we need looooads of text here to 
-                        <br>accomplish a nice box lot of text is good but wtf do we write here.
-                        This explanation could take a while idk.
+
+                        <div style="width: 90%;">
+                            <p style="font-family: urbfontlight;">
+
+                            UrbView will try to figure out which is the max-likelyhood sentiment retrieved by the correlated text of an area.
+                            <br>
+                            Select in the map the area to analyze and our model will retrieve its stadistics about the perception of risk of a region.
+                            <br>Note that UrbView cannot ensure the actual crime rate but to give an idea of how the people in our database would feel given this new urban scenarios.<br> <br>
+                            Click on the map to visualize the results.
+                            </p>
+                        </div>
+
     
-                    </p>
 
 
                 </div>
 
-                
-                <div style="font-style: urbfontlight;"><button  style="height:40px; width: 90%; margin-left: 5%; background-image: url('../style/png/v2/UI_Assets-45.png'); background-color: transparent; border-color: transparent;" id = 'askus' onclick="ask_urbview()">Ask UrbView!</button></div>
-
+                <input type="text" style="border-color: white; box-shadow: none; width: 50%; margin-left: 10%; border-radius: 10px;">                
 
             </div>
             <div class="column">
