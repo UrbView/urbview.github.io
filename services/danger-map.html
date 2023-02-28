@@ -11,47 +11,132 @@
         crossorigin=""></script>
         <link rel="stylesheet" href="/css/urbstyle.css"/>
     
+        <style>
 
+            .row {
+            display: flex;
+            }
+
+            .column {
+            flex: 25%;
+            }
+
+        </style>
 
     </head>
 
     
 
     <body style="background-color: aquamarine; font-family: urbfont;">
+    <a id = 'last-clicked-coord' style="display: none;"></a>
 
 
-        <div style="background-color: whitesmoke;">
 
-            <svg mlns="/style/svg/global/UI_Assets-12.svg">
-
-
-            </svg>
-
+        <div style="background-color: whitesmoke; height: 5%;">
     
         </div>
+        <br>
+
+
+        <div class="row">
+            <div class="column" style="background-color: rgb(164, 36, 36);">
+
+                <h2>
+
+                    Danger Map
+
+                </h2>
+                <p>
+                    Lorem ipsum 
+
+                </p>
+                <button onclick="ask_urbview()" style=" margin-left: 50%;">Ask UrbView!</button>
+
+
+
+            </div>
+            <div class="column">
+
+
+
+                <div id="map" style="height: 420px; width: 1024px;"></div>
+
+
+            </div>
         
+        
+        </div> 
 
-        <div id="map" style="height: 420px; width: 420px; margin-left: 50%;"></div>
 
-        <button onclick="alert(document.getElementById('last-clicked-coord').innerHTML)" style=" margin-left: 50%;">Ask UrbView!</button>
-        <a id = 'last-clicked-coord' style="display: none;"></a>
         <script>
     
+
+            var base_icon = L.icon({
+                iconUrl: '/style/svg/v1/UI_Assets-03.svg'
+            })
+
+            var green_icon =  L.icon({
+                iconUrl: '/style/svg/v1/UI_Assets-04.svg'
+            })
+
+            var red_icon =  L.icon({
+                iconUrl: '/style/svg/v1/UI_Assets-05.svg'
+            })
+
+            var cat_icon = L.icon({
+                iconUrl: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
+                iconSize: [28, 28]
+            })
+
+            var cat_puke = L.icon({
+                iconUrl: 'https://images.squarespace-cdn.com/content/v1/5bde556a85ede155474934ac/1633624460940-A1S2V3Z2UAB70NIJQQJV/464255957-huge.jpg',
+                iconSize: [28, 28]
+            })
+
+            var finger_icon = L.icon({
+                iconUrl:  'https://em-content.zobj.net/thumbs/160/apple/325/backhand-index-pointing-down_1f447.png',
+                iconSize: [28, 28]
+            })
+           
             var map = L.map('map').setView([51.505, -0.09], 13);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
     
+        let markers = []
         function onMapClick(e) {
-                document.getElementById('last-clicked-coord').innerHTML = e.latlng
-            }
+            document.getElementById('last-clicked-coord').innerHTML = e.latlng
+            var marker = L.marker(e.latlng, {icon: finger_icon}).addTo(map);
+            markers.push(marker)
+            console.log(markers)
+        }
+            
     
-            map.on('click', onMapClick);
+        map.on('click', onMapClick);
+
+        function ask_urbview(){
+
+
+            x = (Math.floor(Math.random() * 2) == 0);
+                if(x){
+                    icon = cat_puke
+                }else{
+                    icon = cat_icon
+                }
+
+            console.log(markers)
+            m = markers.pop(0)
+            console.log(markers)
+            m.setIcon(icon)
+
+        }
     
     
         </script>
 
+
+    
 
     </body>
 
