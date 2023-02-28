@@ -117,6 +117,7 @@
         function onMapClick(e) {
             document.getElementById('last-clicked-coord').innerHTML = e.latlng
             var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
+            marker.bindPopup("Coordinates: " + e.latlng.lat + ", " + e.latlng.lng);
             markers.push(marker)
             console.log(markers)
         }
