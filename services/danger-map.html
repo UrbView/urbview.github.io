@@ -1,16 +1,37 @@
+<style>
+.header {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15%;
+}
+
+.header img:first-child {
+  margin-left: 10;
+}
+
+.header img:last-child {
+  margin-right: 0;
+  width: 3%;
+  margin-right: 10;
+}
+</style>
+
+
 <html>
-    
+
     <head>
 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    
+
          <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""></script>
         <link rel="stylesheet" href="/css/urbstyle.css"/>
-    
+
         <style>
 
             .row {
@@ -47,15 +68,12 @@
     <body style="background-color: aquamarine; font-family: urbfont;">
     <a id = 'last-clicked-coord' style="display: none;"></a>
 
+        <div class="header">
 
-
-        <div style="background-color: whitesmoke; height: 7%;">
-    
-        <img src="../style/png/global/UI_Assets-12.png" style="height: 100%; margin-left: 0%;">
+        <img src="../style/png/global/UI_Assets-12.png">
+        <img src="../style/png/global/UI_Assets-10.png">
 
         </div>
-        <br>
-
 
         <div class="row">
             <div class="column" style="background-color: rgb(164, 36, 36);">
@@ -93,13 +111,13 @@
 
 
             </div>
-        
-        
-        </div> 
+
+
+        </div>
 
 
         <script>
-    
+
 
             var base_icon = L.icon({
                 iconUrl: '../style/png/v1/UI_Assets-03.png',
@@ -119,9 +137,9 @@
                 iconAnchor: [20, 50]
             })
 
-            var map = L.map('map').setView([51.505, -0.09], 13);
+            var map = L.map('map').setView([53.657439968356414, 10.175339080682194], 16);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+            maxZoom: 25,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
     
