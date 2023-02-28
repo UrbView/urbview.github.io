@@ -174,8 +174,8 @@
         <div class="result-section">
             <h2>Statistic of your result</h2>
             <div class="bar">
-                <div class="green" style="width: 60%;" percentage="60%"></div>
-                <div class="red" style="width: 40%;" percentage="40%"></div>
+                <div class="green" style="width: 0%;" percentage="60%"></div>
+                <div class="red" style="width: 0%;" percentage="40%"></div>
             </div>
 
         </div>
@@ -234,7 +234,7 @@
             stats.forEach(e => green_stat_buffer += e)
             p = 1 - green_stat_buffer / stats.length
             document.getElementsByClassName("green")[0].style.width = p * 100 + "%" 
-            document.getElementsByClassName("green")[0].percentage = p * 100 + "%" 
+            document.getElementsByClassName("green")[0].percentage = document.getElementsByClassName("green")[0].style.width 
 
             document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
 
