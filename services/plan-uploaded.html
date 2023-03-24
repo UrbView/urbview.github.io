@@ -1,0 +1,242 @@
+<style>
+.header {
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15%;
+}
+
+.header img:first-child {
+  margin-left: 10;
+}
+
+.header img:last-child {
+  margin-right: 0;
+  width: 3%;
+  margin-right: 10;
+}
+
+.result-section {
+  background-color: #f2f2f2;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.result-section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 820px;
+  margin-top: 100px;
+  font-size: 18px;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 16px 24px;
+  text-align: left;
+}
+
+thead tr {
+  background-color: #45AD4B;
+  color: #fff;
+}
+
+thead th {
+  width: 25%;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+tfoot {
+    background-color: #6DC5D8;
+}
+
+</style>
+
+
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+        <link rel="stylesheet" href="/css/urbstyle.css"/>
+
+        <style>
+
+            .row {
+            display: flex;
+            }
+
+            .column {
+            flex: 25%;
+            }
+
+            @font-face {
+                font-family: urbfont;
+                src: url('../style/barlow/barlow/Barlow-Bold.ttf');
+                }
+
+                .h2{
+                font-family: urbfont;
+                }
+
+                @font-face {
+                font-family: urbfontlight;
+                src: url('../style/barlow/barlow/Barlow-Light.ttf');
+                }
+                .p{
+                    font-family: urbfontlight;
+                }
+
+        </style>
+
+    </head>
+
+    <body style="background-color: white; font-family: urbfont;">
+    <a id = 'last-clicked-coord' style="display: none;"></a>
+
+        <div class="header">
+
+        <img src="../style/png/global/UI_Assets-12.png">
+        <img src="../style/png/global/UI_Assets-10.png">
+
+        </div>
+
+        <div class="row">
+            <div class="column" style="background-color: whitesmoke">
+
+                <div id="table-container" style = "margin-left: 10%;">
+                    <table id="table"></table>
+
+                </div>
+    
+                <img src="../style/tmp/download-csv.png" style="margin-left: 77.7%; margin-top: 1%; cursor: pointer" height=10%; width=10%; onclick="downloadCSV()">
+
+            </div>
+
+            <div class="column">
+
+                <div id="heatmap" style="background-color: whitesmoke">
+                    <img src="" id="heatmap-image" height=620; width=100%;>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+
+            function displayData(data) {
+              // Get the response array from the data object
+              const response = data.response;
+
+              // Create a new table element
+              const table = document.getElementById("table");
+
+              // create table header
+              const headerRow = table.createTHead().insertRow();
+              headerRow.innerHTML = "<th>Confidence</th><th>Keywords</th><th>Label</th>";
+
+              // Loop through each item in the response array and add a row to the table for each item
+              for (let item of response) {
+                // create table body
+                const body = table.createTBody();
+                const dataRow = body.insertRow();
+                dataRow.innerHTML = `<td>${item.confidence}</td><td>${item.keywords}</td><td>${item.label}</td>`;
+              }
+
+              // create table foot
+              const footRow = table.createTFoot().insertRow();
+              footRow.innerHTML = "<td>YES</td><td>YES</td><td>YES</td>";
+
+
+              // create heatmap image
+              const heatmapImage = document.getElementById("heatmap-image");
+              heatmapImage.src = `data:image/png;base64,${data.heatmap}`;
+
+              // append the table and heatmap div to the container div
+              const table_container = document.getElementById("table-container");
+              const heatmap_container = document.getElementById("heatmap");
+              table_container.appendChild(table);
+              heatmap_container.appendChild(heatmapImage);
+            }
+
+            <!--  TODO REMOVE THIS  -->
+            displayData({
+            response: [
+                {confidence: 98.32, keywords: ['bad','no','fap'], label: true},
+                {confidence: 98.32, keywords: ['bad','no','fap'], label: true},
+                {confidence: 98.32, keywords: ['bad','no','fap'], label: true},
+                {confidence: 98.32, keywords: ['bad','no','fap'], label: true}],
+            heatmap: "iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAATLSURBVEhLjZZrets2EEVBkJQiO/vfQ5fQXeWLm9qyRKLnXICS0z8t7SuQwGAu5oEBprc//2in1+/l9O1bKe/vQfvrV2lvb+BXKR/X0j4+S9m3MpVWfPalln2dy3Raynw+BWVZS5nXckX+148f5f3nW1lP57Kup7K+vBQ51tfXUutUUaSW/QkV11oKSpvKeW0TdPbNyIMq+J7oz7MzZ9uCideJscgsc1poFOJ9ZqXtKawlEk4QaUFjvNUppIV24ptJZQ4p3w9C5t3vZYonXK/jyC14QUI7G4RTqaXd97JdP8t2u5WNSY2BKI/buuumdYAVTyHCCokGX7yCBbYuZEZOY0StzEGfsjYQ3sr946PcP2mxcmPurvuISyU+9fKtzGA6EScs191xsTyPR00sH+ULVp1Op7Szbg9mwiG5E7Fqg3CDeCOGO3MTLy1i4kxCSRwXQ9iwoCkDxe+kUKLvIE24QqZpndhfhEACjBAEFYLp5VLK60tpWOUCdlQ3Y60lyuumodDv9Dts8ijnP+8Nj7V7jy/ug9AJYcdc/L6cVyw6lyohaFiJzSTvFtI8rthEQF43+R6PGvugkzbmbIbIvLhBCEylEJoFWplVQ1KM1/lMzHDjCHigMXzHVc6RR+Ubi7qxKKAlbi/7hN+GrZCUnfBwiUBJt4B+yNIeiwrGuPBx37Ly3YS7Xmk/48IJosqYmMRwa+0Ku4U984SK6Y+7DsIhd8hCqIMTI7eT24qKZKv7JrbaRLo/SQ/CwzIXi8CNldxR4EoLk60aJpNbYkr5gliPkBB74tNjtG8dLkCr1YgU6G7PFmWOgegr5nUjFp9MvuGe/XorhbYTsh/XM7GVkJg6d8RMsjsW3Wk3SbWExOm+kpC/Bk0mxXc8rvhYuWIQ7yhoECalI2OiHMmC3FjogZS40R7JFCRjMY+FaH0ikbqH2xYsOFHdZ+PFajYItcDUbrjJuarJFsLSqiwnwsK+Xdi/K/N7dWGcRXWrRpbiBTOVsoH5bIcZYSHpXMlOCREyRrvgW8KsHm/o5shbwtg+K5VoJc5HhXmcQsO6HAwSRoFuQijVYxJYfECLkPnvp7uUSUe2pKs/Y6wPdUJdag2MewdZSl7I/gceZAfoDmkf63GlzmZT4q74K0BoIDFAKHuTCc992uHYobCTwDAQr+Vdgzrs5zjHx8O/wsBmM1uWRtw6vySEPPhC9IDKvxSHA9ZZTpfju3blg+grzMoA0mGR2FHcAr5F+lnQUJhcSE1+4kEqb/t4LxsXp7vwEM5B/Dz9dz0QKyELcMi/YJ/nYw5nIUFcOKAHZOOpDSIJb+9/l9u1kwUhHNshwt0SlXfSKQiZeLgPtwZfiRHofNRVK3zwmYqfChM3s/bjbIskM1RANudKyKYP/NaN3nUC3LgoCyQZRGNZEHqcYM1EHAM2aVIDN/St4UTBOwWhLt4ILmV++Q64Z14uXD+osxZ3CkE/lLUM/SEzHk9g4Qfn2ZXjBFLJ7GQM9RBIIniPFSr1jnMpCxfbWVxeciWplLhcsjy8Icy9B1IDkj8JCU+t/ogHUffeA/zkwivps/ML3AqHVWIQIfYAevNDAlZPZje+pDOdAeN960jWCUOq0t/AJTnwwjxuByE+SLWNltRyi5V9L/8A90bB3A5jOCQAAAAASUVORK5CYII="
+            })
+
+            function downloadCSV() {
+              // Get the table body and rows
+              const tableBody = document.getElementById("table-container");
+              const rows = tableBody.querySelectorAll("tr");
+
+              // Create a new CSV file
+              let csvContent = "data:text/csv;charset=utf-8,";
+              csvContent += "Confidence,Keywords,Label\n"; // Add header row
+
+              // Loop over each row in the table and add the values to the CSV file
+              for (const row of rows) {
+                const cols = row.querySelectorAll("td");
+                 if (cols.length === 0) {
+                  // Skip row if it does not contain any td elements
+                  continue;
+                }
+                const rowData = [
+                  cols[0].textContent,
+                  cols[1].textContent,
+                  cols[2].textContent,
+                ];
+                csvContent += rowData.join(",") + "\n";
+              }
+
+              // Create a temporary link to download the file
+              const encodedUri = encodeURI(csvContent);
+              const link = document.createElement("a");
+              link.setAttribute("href", encodedUri);
+              link.setAttribute("download", "table.csv");
+              document.body.appendChild(link);
+
+              // Click the link to start the download
+              link.click();
+
+              // Clean up the temporary link element
+              document.body.removeChild(link);
+            }
+
+            // Attach click event listener to the button
+            const downloadBtn = document.getElementById("download-csv-btn");
+            downloadBtn.addEventListener("click", downloadCSV);
+
+        </script>
+
+    </body>
+
+    <footer>
+        <div style="text-align: center; font-size: 14px; color: #888;">
+            <p>I'm Adri and I am responsible for everyone's safety</p>
+        </div>
+    </footer>
+
+</html>
