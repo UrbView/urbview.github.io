@@ -1,4 +1,7 @@
 <style>
+
+
+
 .header {
   background-color:white;
   display: flex;
@@ -168,8 +171,12 @@ input, button, select, textarea {
 <script>
 
 function uploadFile() {
+
+  console.log('henlo')
   const input = document.getElementById("plan-input");
   const file = input.files[0];
+
+  console.log(file, input)
 
   const formData = new FormData();
   formData.append("file", file);
@@ -180,10 +187,11 @@ function uploadFile() {
     redirect: 'follow'
   };
 
-  fetch("http://158.109.8.44:8080/", requestOptions)
+
+  fetch("http://localhost:8080/", requestOptions)
   .then(response => response.json())
   .then(result => {
-    window.location.href = "upload-plan.html?data=${encodeURIComponent(JSON.stringify(result))}";
+    window.location.href = `plan-uploaded.html?data=${encodeURIComponent(JSON.stringify(result))}`;
   })
   .catch(error => console.error(error));
 }
@@ -294,10 +302,9 @@ function uploadFile() {
                         </button>
                     </div>
 
-                    <form onchange="uploadFile()">
+                    <form >
                         <div class="modal-footer">
-                            <button class="btn-primary" style="cursor:pointer" onclick="document.getElementById('plan-input').click()">Upload File</button>
-                            <input type="file" id="plan-input" style="display:none" accept="image/*">
+                                <input class="btn-primary" style="cursor:pointer" id="plan-input" type="file" name="file" onchange="uploadFile(this.files[0])">
                             <button class="btn-secondary" style="cursor:pointer">Cancel</button>
                         </div>
                     </form>
