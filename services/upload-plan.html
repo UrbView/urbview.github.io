@@ -187,9 +187,10 @@ function uploadFile() {
     redirect: 'follow'
   };
   console.log(requestOptions.body)
+  server = document.getElementById('server').value
 
 
-  fetch("http://localhost:8080/", requestOptions)
+  fetch(server, requestOptions)
   .then(response => response.json())
   .then(result => {
     window.location.href = `plan-uploaded.html?data=${encodeURIComponent(JSON.stringify(result))}`;
@@ -246,6 +247,8 @@ function uploadFile() {
 
 
     <body style="background-color: white; font-family: urbfont;">
+
+        <input type="text" id = 'server'/>
 
         <div class="header">
 
