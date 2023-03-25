@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_from_directory
 from flask import Flask, request, Response
+from flask_ngrok import run_with_ngrok
 
 import os
 import warnings
@@ -11,6 +12,7 @@ from pytorch_grad_cam import GradCAM
 import base64
 import cv2
 from PIL import Image
+
 
 
 class SimilarityToConceptTarget:
@@ -101,4 +103,5 @@ def index():
 ip = "localhost:8080" #"0.0.0.0:5000"
 ip, port = ip.split(':')
 
+run_with_ngrok(app)
 app.run(host=ip, port = int(port[:]), debug = True)
