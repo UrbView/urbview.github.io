@@ -179,24 +179,28 @@ tfoot {
               heatmap_container.appendChild(heatmapImage);
             }
 
-            <!--  TODO REMOVE THIS  -->
+
             const urlParams = new URLSearchParams(window.location.search);
             const myData = JSON.parse(urlParams.get('data'));
-            const server = urlParams.get('server')
+            var server = urlParams.get('server')
             var requestOptions = {
               method: 'POST',
               redirect: 'follow'
             };
-            console.log(server + myData.cached_heatmap)
-            fetch(server + myData.cached_heatmap, requestOptions)
+            if (server[server.length -1] != '/' ){
+              server = server + '/'
+            }
+            var end = server +'cached/'+ myData.cached_heatmap
+            console.log(end)
+            fetch(end, requestOptions)
             .then(response => response.json())
             .then(result => {
               
               myData.heatmap = result.heatmap
+              displayData(myData)
+
               
             })
-
-            displayData(myData)
 
             function downloadCSV() {
               // Get the table body and rows

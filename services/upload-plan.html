@@ -194,7 +194,7 @@ function uploadFile() {
   .then(response => response.json())
   .then(result => {
     
-    window.location.href = `plan-uploaded.html?data=${encodeURIComponent(JSON.stringify(result))}server=${server}`;
+    window.location.href = `plan-uploaded.html?data=${encodeURIComponent(JSON.stringify(result))}&server=${server}`;
 
   })
   .catch(error => console.error(error));
