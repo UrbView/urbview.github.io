@@ -115,7 +115,7 @@ def index():
 @app.route('/cached/<code>', methods = ['POST'])
 def cached(code):
     json_string = {'heatmap': CACHED_IMAGES[code]}
-    r Response(response=json.dumps(json_string, default=np_encoder), status=200, mimetype="application/json")
+    r = Response(response=json.dumps(json_string, default=np_encoder), status=200, mimetype="application/json")
     r.headers.add('Access-Control-Allow-Origin', '*')
     return r
 
