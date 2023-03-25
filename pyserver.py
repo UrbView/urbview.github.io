@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_from_directory
 from flask import Flask, request, Response
 from flask_ngrok import run_with_ngrok
+import matplotlib.pyplot as plt
 
 import os
 import warnings
@@ -85,7 +86,15 @@ def index():
 
     heatmap = scanner.scan(data[0])
     heatmap = 255 * (heatmap - heatmap.min()) / (heatmap.max() - heatmap.min())
-    image = (255 * data[0].cpu().numpy().mean(0)) * (1 - p) + heatmap * p
+    colormap = plt.get_cmap('inferno')
+    heatmap = (colormap(heatmap) * 2**16).astype(np.uint16)[:,:,:3]
+    heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
+
+    inimage = cv2.cvtColor(data[0].cpu().numpy().mean(0), cv2.COLOR_GRAY2BGR)
+
+    image = (255 * inimage) * (1 - p) + heatmap * p
+
+
     cv2.imwrite('tmp.png', image.astype(np.uint8))
     with open("tmp.png", "rb") as image_file:
         b64 = base64.b64encode(image_file.read()).decode()
