@@ -82,15 +82,16 @@ def index():
     concept = model(data)[0]
     scanner = GradCamScanner(model, SimilarityToConceptTarget(concept.detach()), layers)
 
-    p = 0.61
+    p = 0.8
 
     heatmap = scanner.scan(data[0])
     heatmap = 255 * (heatmap - heatmap.min()) / (heatmap.max() - heatmap.min())
-    colormap = plt.get_cmap('inferno')
-    heatmap = (colormap(heatmap) * 2**16).astype(np.uint16)[:,:,:3]
-    heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
+    #colormap = plt.get_cmap('inferno')
+    #heatmap = (colormap(heatmap) * 2**16).astype(np.uint16)[:,:,:3]
+    #heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
 
-    inimage = cv2.cvtColor(data[0].cpu().numpy().mean(0), cv2.COLOR_GRAY2BGR)
+    #inimage = cv2.cvtColor(data[0].cpu().numpy().mean(0), cv2.COLOR_GRAY2BGR)
+    inimage = data[0].cpu().numpy().mean(0)
 
     image = (255 * inimage) * (1 - p) + heatmap * p
 
