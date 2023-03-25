@@ -42,12 +42,12 @@ input, button, select, textarea {
 }
 
 .modal {
+	height: 95%;
 	width: 90%;
 	max-width: 500px;
+	margin-top: 1%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10vh;
-	margin-bottom: 10vh;
 	background-color: #FFF;
 	border-radius: .5rem;
 	box-shadow: 0 5px 15px rgba(#000, .2);
@@ -88,7 +88,7 @@ input, button, select, textarea {
 }
 
 .modal-body {
-	padding: 1rem 1.5rem;
+	padding: 0rem 1.5rem;
 }
 
 .modal-title {
@@ -221,53 +221,65 @@ input, button, select, textarea {
 
         </div>
 
+        <div class="row">
 
-        <div style = "margin-left: 10%;">
+            <div class="column" style="background-color: whitesmoke">
 
-            <br>
-            <h2 style="font-size: 50;">
+                <div style = "margin-left: 10%;">
 
-                Plan Evaluation
+                    <br>
+                    <h2 style="font-size: 50;">
 
-            </h2>
+                        Plan Evaluation
 
-                <div style="width: 90%;">
-                    <p style="font-family: urbfontlight;">
+                    </h2>
 
-                      <a> Add </a>
-                      <a style="font-size: smaller;">a</a>
-                      <a style="font-family: urbfont;">comment</a>
-                    </p>
+                        <div style="width: 90%;">
+                            <p style="font-family: urbfontlight;">
+                                <a> Plan Evaluation is a powerful tool that evaluates the design of your plan and provides you with a comprehensive analysis through a table and a salient map. It is an ideal solution for architects, urban planners, and designers who want to ensure that their plans are optimized for success. </a>
+                                <br>
+                                <br>
+                                <a>Submit your plan and receive an evaluation that includes a table with a score, keywords, and a classification that highlights the strengths and weaknesses of your plan.</a>
+                                <br>
+                                <br>
+                                <a style="font-size: smaller;">Note that UrbView cannot ensure the actual crime rate but can give an idea of how the people in our database would feel given these new urban scenarios.</a>
+                            </p>
+                        </div>
+
                 </div>
-
-        </div>
-
-        <div class="modal">
-            <div class="modal-header">
-                <img src="../style/tmp/folder.png" width=10% height=10%>
             </div>
 
-            <div class="modal-body">
-                <h2 class="modal-title">Upload a file</h2>
-                <p class="modal-description">Attach the file below</p>
-                <button class="upload-area">
-                    <span class="upload-area-icon">
-                        <img src="../style/tmp/files.png" width=100% height=100%>
-                    </span>
-                    <span class="upload-area-title">Drag file(s) here to upload.</span>
-                    <span class="upload-area-description">
-                        Alternatively, you can select a file by <br/><strong>clicking here</strong>
-                    </span>
-                </button>
-            </div>
-            <form>
-                <div class="modal-footer">
-                    <button class="btn-primary">Upload File</button>
-                    <button class="btn-secondary">Cancel</button>
-                </div>
-            </form>
-        </div>
+            <div class="column" style="background-color: whitesmoke">
 
+                <div class="modal" >
+                    <div class="modal-header">
+                        <img src="../style/tmp/folder.png" width=10% height=10%>
+                    </div>
+
+                    <div class="modal-body">
+                        <h2 class="modal-title">Upload a file</h2>
+                        <p class="modal-description">Attach the file below</p>
+                        <button class="upload-area">
+                            <span class="upload-area-icon">
+                                <img src="../style/tmp/files.png" width=100% height=100%>
+                            </span>
+                            <span class="upload-area-title">Drag file(s) here to upload.</span>
+                            <span class="upload-area-description">
+                                Alternatively, you can select a file by <br/><strong>clicking here</strong>
+                            </span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-footer">
+                            <button class="btn-primary" style="cursor:pointer" onclick="document.getElementById('fileInput').click()">Upload File</button>
+                            <input type="file" id="fileInput" style="display:none">
+                            <button class="btn-secondary" style="cursor:pointer">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </body>
 
 </html>
