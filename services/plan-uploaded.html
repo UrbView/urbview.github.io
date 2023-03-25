@@ -182,6 +182,18 @@ tfoot {
             <!--  TODO REMOVE THIS  -->
             const urlParams = new URLSearchParams(window.location.search);
             const myData = JSON.parse(urlParams.get('data'));
+
+            var cookies = document.cookie.split("; ");
+            console.log(cookies)
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i].split("=");
+              if (cookie[0] === "heatmap") {
+                var myVar = cookie[1];
+                myData.heatmap = myVar
+                console.log(myVar); // "hello"
+              }
+            }
+
             displayData(myData)
 
             function downloadCSV() {
@@ -232,7 +244,13 @@ tfoot {
 
     <footer>
         <div style="text-align: center; font-size: 14px; color: #888;">
-            <p>I'm Adri and I am responsible for everyone's safety</p>
+          <p>
+            Our neural network is designed to predict the risk of street harassment in different urban designs. While we've trained the model to perform data correlation and provide insights into potential safety risks, it's important to remember that the model is only as good as the data it was trained on. <br><br>
+          
+          <b>Additionally</b>, it's worth noting that our model is <b>not perfect</b> and should not be taken as an absolute truth. There are many complex factors that can influence safety in urban environments, and our model may not account for all of them. <br><br>
+          
+          As such, we encourage users to interpret the results with caution and to use them as just one source of information when making decisions about urban design.
+          </p> 
         </div>
     </footer>
 

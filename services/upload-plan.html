@@ -193,7 +193,14 @@ function uploadFile() {
   fetch(server, requestOptions)
   .then(response => response.json())
   .then(result => {
+    image = result.heatmap;
+
+    document.cookie = "heatmap=" + image;
+
     window.location.href = `plan-uploaded.html?data=${encodeURIComponent(JSON.stringify(result))}`;
+
+
+
   })
   .catch(error => console.error(error));
 }
