@@ -186,6 +186,7 @@ function uploadFile() {
     body: formData,
     redirect: 'follow'
   };
+  console.log(requestOptions.body)
 
 
   fetch("http://localhost:8080/", requestOptions)
