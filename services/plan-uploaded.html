@@ -122,19 +122,18 @@ tfoot {
         <div class="row">
             <div class="column" style="background-color: whitesmoke">
 
-                <div id="table-container" style = "margin-left: 10%;">
-                    <table id="table"></table>
-
+                <div id="table-container">
+                    <table id="table" style="margin-left: 10%; margin-right: 10%"></table>
                 </div>
-    
+
                 <img src="../style/tmp/download-csv.png" style="margin-left: 77.7%; margin-top: 1%; cursor: pointer" height=10%; width=10%; onclick="downloadCSV()">
 
             </div>
 
             <div class="column">
 
-                <div id="heatmap" style="background-color: whitesmoke">
-                    <img src="" id="heatmap-image" height=620; width=100%;>
+                <div id="heatmap-container" style="background-color: whitesmoke">
+                    <img src="" id="heatmap-image" style="margin-left: 10%; margin-right: 10%" height=100%>
                 </div>
 
             </div>
@@ -175,7 +174,7 @@ tfoot {
 
               // append the table and heatmap div to the container div
               const table_container = document.getElementById("table-container");
-              const heatmap_container = document.getElementById("heatmap");
+              const heatmap_container = document.getElementById("heatmap-container");
               table_container.appendChild(table);
               heatmap_container.appendChild(heatmapImage);
             }
