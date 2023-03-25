@@ -182,17 +182,19 @@ tfoot {
             <!--  TODO REMOVE THIS  -->
             const urlParams = new URLSearchParams(window.location.search);
             const myData = JSON.parse(urlParams.get('data'));
-
-            var cookies = document.cookie.split("; ");
-            console.log(cookies)
-            for (var i = 0; i < cookies.length; i++) {
-              var cookie = cookies[i].split("=");
-              if (cookie[0] === "heatmap") {
-                var myVar = cookie[1];
-                myData.heatmap = myVar
-                console.log(myVar); // "hello"
-              }
-            }
+            const server = urlParams.get('server')
+            var requestOptions = {
+              method: 'POST',
+              redirect: 'follow'
+            };
+            console.log(server + myData.cached_heatmap)
+            fetch(server + myData.cached_heatmap, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+              
+              myData.heatmap = result.heatmap
+              
+            })
 
             displayData(myData)
 

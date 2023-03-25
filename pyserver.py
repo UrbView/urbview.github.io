@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_from_directory
 from flask import Flask, request, Response
 from flask_ngrok import run_with_ngrok
 import matplotlib.pyplot as plt
+import uuid
 
 import os
 import warnings
@@ -14,7 +15,7 @@ import base64
 import cv2
 from PIL import Image
 
-
+CACHED_IMAGES = {} #TODO: do an object that remoes stuf, this is not secure
 
 class SimilarityToConceptTarget:
 
@@ -101,14 +102,25 @@ def index():
         b64 = base64.b64encode(image_file.read()).decode()
     
 
-    
-    json_string = {'response': response, 'heatmap': b64 , 'aggregation': response[0]}
+    uuid_heat = str(uuid.uuid4())
+    json_string = {'response': response, 'cached_heatmap': uuid_heat, 'aggregation': response[0]}
+    CACHED_IMAGES[uuid_heat] = b64
 
     response = Response(response=json.dumps(json_string, default=np_encoder), status=200, mimetype="application/json")
     # Add an 'Access-Control-Allow-Origin' header to the response to allow requests from any origin
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
+
+@app.route('/cached/<code>', methods = ['POST'])
+def cached(code):
+    json_string = {'heatmap': CACHED_IMAGES[code]}
+    r Response(response=json.dumps(json_string, default=np_encoder), status=200, mimetype="application/json")
+    r.headers.add('Access-Control-Allow-Origin', '*')
+    return r
+
+
+
 
 ip = "localhost:8080" #"0.0.0.0:5000"
 ip, port = ip.split(':')
