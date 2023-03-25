@@ -104,4 +104,4 @@ ip = "localhost:8080" #"0.0.0.0:5000"
 ip, port = ip.split(':')
 
 run_with_ngrok(app)
-app.run(host=ip, port = int(port[:]), debug = True)
+app.run()
