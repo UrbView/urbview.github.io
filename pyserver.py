@@ -77,7 +77,7 @@ def index():
     data = torch.from_numpy(data).float().cuda()
     with torch.no_grad():
         out = torch.nn.functional.sigmoid(model(data)).cpu().numpy()
-        response = [{'label': np.argmax(o), 'confidence': np.max(o), 'keywords': ['Not', 'Implemented', 'Yet']} for o in out]
+        response = [{'label': 'positive' if np.argmax(o) % 2 else 'negative' , 'confidence': np.max(o), 'keywords': ['Not', 'Implemented', 'Yet']} for o in out]
     
     layers = list(model.modules())[:-5]
     concept = model(data)[0]
