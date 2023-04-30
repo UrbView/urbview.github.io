@@ -201,17 +201,17 @@
                     maxZoom: 25,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 }).addTo(map);
-    
 
                 $.getJSON("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/hamburg.geojson", function(data)  {
                     L.geoJSON(data, {
                         style: {
-                            color: 'red',
                             weight: 3,
-                            opacity: 0.7
+                            opacity: 0.7,
+                            fillOpacity: 0
                         }
                     }).addTo(map);
                 });
+
                 let markers = []
                 let stats = []
                 function onMapClick(e) {
