@@ -75,45 +75,46 @@
       left: 5px;
     }
     
-    </style>
-    
-    
-    <html>
-    
-        <head>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
-                        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-            integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    
-             <!-- Make sure you put this AFTER Leaflet's CSS -->
-            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-            crossorigin=""></script>
-            <link rel="stylesheet" href="/css/urbstyle.css"/>
-
-               <!-- Load Leaflet library from CDN -->
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            <!-- Load D3.js library from CDN -->
-            <script src="https://d3js.org/d3.v7.min.js"></script>
-            <script src="https://unpkg.com/delaunator@5.0.0/delaunator.min.js"></script>
+</style>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <script src="https://d3js.org/d3-delaunay.v2.min.js"></script>
+<html>
 
-            <style>
+<head>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+	<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+		  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script crossorigin=""
+			integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+			src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+	<link href="/css/urbstyle.css" rel="stylesheet"/>
+
+	<!-- Load Leaflet library from CDN -->
+	<link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"/>
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<!-- Load D3.js library from CDN -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://unpkg.com/delaunator@5.0.0/delaunator.min.js"></script>
+
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+	<script src="https://d3js.org/d3-delaunay.v2.min.js"></script>
+
+	<style>
     
                 .row {
                 display: flex;
@@ -140,57 +141,56 @@
                         font-family: urbfontlight;
                     }
     
-            </style>
-    
-        </head>
-    
-        
-    
-        <body style="background-color: white; font-family: urbfont;">
-        <a id = 'last-clicked-coord' style="display: none;"></a>
-    
-            <div class="header">
-    
-            <img src="../style/png/global/UI_Assets-12.png">
-            <img src="../style/png/global/UI_Assets-10.png">
-    
-            </div>
-    
-            <div class="row">
-                <div class="column" style="background-color: whitesmoke">
-    
-    
-                    <div style = "margin-left: 10%;">
-    
-                        <br>
-                        <h2 style="font-size: 50;">
-    
-                            Delunay Triangulation
-        
-                        </h2>
-    
-                            <div style="width: 90%;">
-                                <p style="font-family: urbfontlight;">
-    
-                                  <a> A _ UWU</a>
-                                </p>
-                            </div>
-    
-                    </div>
-    
-    
-    
-                </div>
-                <div class="column">
-    
-                    <div id="map" style="height: 620px; width: 100%;"></div>
-    
-                </div>
-    
-            </div>
 
-    
-            <script>
+	</style>
+
+</head>
+
+
+<body style="background-color: white; font-family: urbfont;">
+<a id='last-clicked-coord' style="display: none;"></a>
+
+<div class="header">
+
+	<img src="../style/png/global/UI_Assets-12.png">
+	<img src="../style/png/global/UI_Assets-10.png">
+
+</div>
+
+<div class="row">
+	<div class="column" style="background-color: whitesmoke">
+
+
+		<div style="margin-left: 10%;">
+
+			<br>
+			<h2 style="font-size: 50;">
+
+				Delunay Triangulation
+
+			</h2>
+
+			<div style="width: 90%;">
+				<p style="font-family: urbfontlight;">
+
+					<a> A _ UWU</a>
+				</p>
+			</div>
+
+		</div>
+
+
+	</div>
+	<div class="column">
+
+		<div id="map" style="height: 620px; width: 100%;"></div>
+
+	</div>
+
+</div>
+
+
+<script>
     
     
                 var base_icon = L.icon({
@@ -222,96 +222,94 @@
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 }).addTo(map);
 
-
-                function addMarkersFromCSV(csvUrl) {
-                $.get(csvUrl, function(csvString) {
-                    Papa.parse(csvString, {
-                    header: true,
-                    delimiter: ';',
-                    dynamicTyping: true,
-                    complete: function(results) {
-                        console.log('Parsed CSV:', results);
-                        results.data.forEach(function(row) {
-                        console.log('Row:', row);
-                        var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-                        var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-                        var marker = L.marker([lat, lng]).addTo(map);
-                        marker.bindPopup(row.Name);
-                        });
-                    },
-                    error: function(error) {
-                        console.log('CSV parsing error:', error);
-                    }
-                    });
-                });
-                }
                 function getRandomColor() {
-  var r = Math.floor(Math.random() * 256); // random number between 0 and 255
-  var g = Math.floor(Math.random() * 256); // random number between 0 and 255
-  var b = Math.floor(Math.random() * 256); // random number between 0 and 255
-  return "rgb(" + r + ", " + g + ", " + b + ")";
-}
+				  var r = Math.floor(Math.random() * 256); // random number between 0 and 255
+				  var g = Math.floor(Math.random() * 256); // random number between 0 and 255
+				  var b = Math.floor(Math.random() * 256); // random number between 0 and 255
+				  return "rgb(" + r + ", " + g + ", " + b + ")";
+				}
 
-                //addMarkersFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
-// Create an array of points from the CSV data
-            var points = [];
-            $.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv', function(csvString) {
-                Papa.parse(csvString, {
-                    header: true,
-                    delimiter: ';',
-                    dynamicTyping: true,
-                    complete: function(results) {
-                        //console.log('Parsed CSV:', results);
-                        results.data.forEach(function(row) {
-                          //  console.log('Row:', row);
-                          if ('Latitude' in row ) {
-                            if ('Longitude' in row ){
-
-
-                            var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-                            var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-                            points.push([lat, lng]);} 
-
-                            }
-
-
-                        });
-                        // Compute the Delaunay triangulation
-                        var delaunay = Delaunator.from(points);
-                        // Create an array of triangles from the triangulation
-                        console.log(delaunay)
-                        var triangles = delaunay.triangles;
-                        // Add the triangles to the map
-                        for (var i = 0; i < triangles.length; i += 3) {
-                            var triangle = [                    points[triangles[i]],
-                                points[triangles[i + 1]],
-                                points[triangles[i + 2]]
-                            ];
-                            console.log(triangle)
-                            L.polygon(triangle, { color: getRandomColor(), fillOpacity: 0.5 }).addTo(map);
-                        }
-
-                        // Add markers to the map
-                        results.data.forEach(function(row) {
-                            if ('Latitude' in row ) {
-
-
-
-                                var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-                            var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-                            var marker = L.marker([lat, lng]).addTo(map);
-                            marker.bindPopup(row.Name);
-
-                            }
-
-                        });
-                    },
-                    error: function(error) {
-                        console.log('CSV parsing error:', error);
-                    }
-                });
-            });
-
+				// Create an array of points from the CSV data
+				var points = [];
+				var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
+				$.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv', function(csvString) {
+					Papa.parse(csvString, {
+						header: true,
+						delimiter: ';',
+						dynamicTyping: true,
+						complete: function(results) {
+							//console.log('Parsed CSV:', results);
+							results.data.forEach(function(row) {
+								// console.log('Row:', row);
+								if ('Latitude' in row) {
+									if ('Longitude' in row) {
+										var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+										var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+										points.push([lat, lng]);
+									}
+								}
+							});
+							// Compute the Delaunay triangulation
+							var delaunay = Delaunator.from(points);
+							// Create an array of triangles from the triangulation
+							console.log(delaunay)
+							var triangles = delaunay.triangles;
+							// Add the triangles to the map
+							for (var i = 0; i < triangles.length; i += 3) {
+								var triangle = [
+									points[triangles[i]],
+									points[triangles[i + 1]],
+									points[triangles[i + 2]]
+								];
+								console.log(triangle)
+								L.polygon(triangle, {
+									color: getRandomColor(),
+									fillOpacity: 0.5
+								}).addTo(trianglesLayer);
+							}
+							// Add markers to the map
+							results.data.forEach(function(row) {
+								if ('Latitude' in row) {
+									var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+									var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+									var marker = L.marker([lat, lng], {
+										draggable: true
+									}).addTo(map);
+									marker.bindPopup(row.Name);
+									marker.on('dragend', function(event) { // Listen to 'dragend' event
+										// Clear previous triangles
+										trianglesLayer.clearLayers();
+										// Recompute Delaunay triangulation using updated marker positions
+										points = [];
+										map.eachLayer(function(layer) {
+											if (layer instanceof L.Marker) {
+												var latLng = layer.getLatLng();
+												points.push([latLng.lat, latLng.lng]);
+											}
+										});
+										delaunay = Delaunator.from(points);
+										// Add the new triangles to the map
+										var triangles = delaunay.triangles;
+										for (var i = 0; i < triangles.length; i += 3) {
+											var triangle = [
+												points[triangles[i]],
+												points[triangles[i + 1]],
+												points[triangles[i + 2]]
+											];
+											L.polygon(triangle, {
+												color: getRandomColor(),
+												fillOpacity: 0.5
+											}).addTo(trianglesLayer);
+										}
+									});
+								}
+							});
+						},
+						error: function(error) {
+							console.log('CSV parsing error:', error);
+						}
+					});
+				});
     
                 function ask_urbview(){
     
@@ -346,9 +344,10 @@
                     calc_stats()
                 }
     
-            </script>
-    
-        </body>
-    
-    </html>
+
+</script>
+
+</body>
+
+</html>
     
