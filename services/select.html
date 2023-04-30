@@ -1,0 +1,241 @@
+<style>
+    .header {
+      background-color:white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 15%;
+    }
+    
+    .header img:first-child {
+      margin-left: 10;
+    }
+    
+    .header img:last-child {
+      margin-right: 0;
+      width: 3%;
+      margin-right: 10;
+    }
+    
+    .result-section {
+      background-color: #f2f2f2;
+      padding: 50px 0;
+      text-align: center;
+    }
+    
+    .result-section h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .result-images {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 20px;
+    }
+    
+    .result-images img {
+      width: 15%;
+    }
+    
+    .bar {
+      height: 20px;
+      border-radius: 10px;
+      background-color: #ddd;
+      position: relative;
+    }
+    .green, .red {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      border-radius: 10px;
+    }
+    .green {
+      background-color: green;
+      left: 0;
+    }
+    .red {
+      background-color: red;
+      right: 0;
+    }
+    .green::after, .red::after {
+      content: attr(percentage);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: white;
+      padding: 0 5px;
+    }
+    .green::after {
+      right: 5px;
+    }
+    .red::after {
+      left: 5px;
+    }
+    
+
+</style>
+
+
+<html>
+
+<head>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+	<link crossorigin="" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+		  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" rel="stylesheet"/>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script crossorigin=""
+			integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+			src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+	<link href="/css/urbstyle.css" rel="stylesheet"/>
+
+	<!-- Load Leaflet library from CDN -->
+	<link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"/>
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<!-- Load D3.js library from CDN -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://unpkg.com/delaunator@5.0.0/delaunator.min.js"></script>
+
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+	<script src="https://d3js.org/d3-delaunay.v2.min.js"></script>
+
+	<style>
+    
+                .row {
+                display: flex;
+                }
+    
+                .column {
+                flex: 25%;
+                }
+    
+                @font-face {
+                    font-family: urbfont;
+                    src: url('../style/barlow/barlow/Barlow-Bold.ttf');
+                    }
+    
+                    .h2{
+                    font-family: urbfont;
+                    }
+    
+                    @font-face {
+                    font-family: urbfontlight;
+                    src: url('../style/barlow/barlow/Barlow-Light.ttf');
+                    }
+                    .p{
+                        font-family: urbfontlight;
+                    }
+    
+
+	</style>
+
+</head>
+
+
+<body style="background-color: white; font-family: urbfont;">
+<a id='last-clicked-coord' style="display: none;"></a>
+
+<div class="header">
+
+	<img src="../style/png/global/UI_Assets-12.png">
+	<img src="../style/png/global/UI_Assets-10.png">
+
+</div>
+
+<div class="row">
+	<div class="column" style="background-color: whitesmoke" onclick="window.open('./danger-map.html')">
+
+
+		<div style="margin-left: 10%;">
+
+			<br>
+			<h2 style="font-size: 50;">
+
+				Danger Map
+
+			</h2>
+
+			<div style="width: 90%;">
+				<p style="font-family: urbfontlight;">
+
+					<a>UrbView will try to figure out which is the maximum-likelihood sentiment retrieved by the correlated text of an area.
+                        Select on the map the area to analyze, and our model will retrieve its statistics about the perception of risk of a region. </a>
+				</p>
+			</div>
+            <img style = "margin-left: 17%; margin-top: 7%;" src="../style/Software/GIFS/Dangermap/V2/Danger & Safe Zone-1.svg.png" width="248px" height="267px">
+
+
+		</div>
+
+
+	</div>
+	<div class="column" onclick="window.open('./upload-plan.html')">
+
+		<div id="map" style="height: 620px; width: 100%;"><div style="margin-left: 10%;">
+
+			<br>
+			<h2 style="font-size: 50;">
+
+				Evaluate Plan
+
+			</h2>
+
+			<div style="width: 90%;">
+				<p style="font-family: urbfontlight;">
+
+					<a>Plan Evaluation is a powerful tool that evaluates the design of your plan and provides you with a comprehensive analysis through a table and a salient map. It is an ideal solution for architects, urban planners, and designers who want to ensure that their plans are optimized for success.
+
+                        Submit your plan and receive an evaluation that includes a table with a score, keywords, and a classification that highlights the strengths and weaknesses of your plan.</a>
+				</p>
+			</div>
+            <img style = "margin-left: 17%; margin-top: 7%;" src="../style/Software/GIFS/Heatmap/Heatmap-Dark.svg.png" width="248px" height="267px">
+
+		</div></div>
+
+	</div>
+
+    <div class="column" style="background-color: whitesmoke" onclick="window.open('./voronoid.html')">
+
+
+		<div style="margin-left: 10%;">
+
+			<br>
+			<h2 style="font-size: 50;">
+
+				Public Transport Graph
+			</h2>
+
+			<div style="width: 90%;">
+				<p style="font-family: urbfontlight;">
+
+					<a> Public Transport Graph is a mapping service of Hamburg's bus stops with a safety score assigned to each region, determined by Lunay Triangulation. It enables users to evaluate how the safety score changes with moving between stops.</a>
+				</p>
+
+                <img style = "margin-left: 17%; margin-top: 7%;" src="../style/Software/GIFS/Plan/Plan.svg.png" width="248px" height="267px">
+			</div>
+
+		</div>
+
+</div>
+
+
+
+</body>
+
+</html>
+    
