@@ -223,10 +223,22 @@
                 }).addTo(map);
 
                 function getRandomColor() {
-				  var r = Math.floor(Math.random() * 255); // random number between 128 and 255 (inclusive)
-				  var g = 255 - r;
+                
+                  x = (Math.floor(Math.random() * 2) == 0);
+                  var a = Math.floor(Math.random() * 255);
+
+                if(x){ 
+                    var r = 255;
+                    var g = 0;
+                } 
+                else{
+                    var g = 255;
+                    var r = 0;
+                }
+                
+				 
 				  var b = 0;
-				  return "rgb(" + r + ", " + g + ", " + b + ")";
+				  return "rgba(" + r + ", " + g + ", " + b + "," + a + ")"
 				}
 
 
@@ -271,7 +283,7 @@
 								console.log(triangle)
 								L.polygon(triangle, {
 									color: getRandomColor(),
-									fillOpacity: 0.5
+									fillOpacity: Math.random()
 								}).addTo(trianglesLayer);
 							}
 							// Add markers to the map
