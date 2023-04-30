@@ -245,7 +245,12 @@
                     });
                 });
                 }
-
+                function getRandomColor() {
+  var r = Math.floor(Math.random() * 256); // random number between 0 and 255
+  var g = Math.floor(Math.random() * 256); // random number between 0 and 255
+  var b = Math.floor(Math.random() * 256); // random number between 0 and 255
+  return "rgb(" + r + ", " + g + ", " + b + ")";
+}
 
                 //addMarkersFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
 // Create an array of points from the CSV data
@@ -283,7 +288,7 @@
                                 points[triangles[i + 2]]
                             ];
                             console.log(triangle)
-                            L.polygon(triangle, { color: 'red', fillOpacity: 0 }).addTo(map);
+                            L.polygon(triangle, { color: getRandomColor(), fillOpacity: 0.5 }).addTo(map);
                         }
 
                         // Add markers to the map
