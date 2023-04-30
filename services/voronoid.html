@@ -221,7 +221,7 @@
 
 
 
-                d3.csv('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg.csv', function(data) {    // Check if data is an array or iterable object
+                d3.csv('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv',  { delimiter: ';' }, function(data) {    // Check if data is an array or iterable object
                         if (!Array.isArray(data) && !(typeof data[Symbol.iterator] === 'function')) {
                             console.error('CSV file not parsed correctly:', data);
                             return;
