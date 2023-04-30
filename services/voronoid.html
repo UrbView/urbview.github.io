@@ -81,8 +81,15 @@
     <html>
     
         <head>
-    
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+                        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
             integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -98,7 +105,13 @@
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
             <!-- Load D3.js library from CDN -->
             <script src="https://d3js.org/d3.v7.min.js"></script>
-            
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://d3js.org/d3-delaunay.v2.min.js"></script>
+
             <style>
     
                 .row {
@@ -207,41 +220,37 @@
                     maxZoom: 25,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 }).addTo(map);
-    
-
-                $.getJSON("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/hamburg.geojson", function(data)  {
-                    L.geoJSON(data, {
-                        style: {
-                            color: 'red',
-                            weight: 3,
-                            opacity: 0.7
-                        }
-                    }).addTo(map);
-                });
 
 
-
-                d3.csv('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv',  { delimiter: ';' }, function(data) {    // Check if data is an array or iterable object
-                        if (!Array.isArray(data) && !(typeof data[Symbol.iterator] === 'function')) {
-                            console.error('CSV file not parsed correctly:', data);
-                            return;
-                        }
-
-                        // Loop through each row of the CSV file
-                        data.forEach(function(row) {
-                            // Extract the latitude and longitude values
-                            var lat = parseFloat(row.Latitude.replace(',', '.'));
-                            var lng = parseFloat(row.Longitude.replace(',', '.'));
-
-                            // Create a marker for the stop and add it to the map
-                            var marker = L.marker([lat, lng]).addTo(map);
-
-                            // Add a popup to the marker with the stop name and type
-                            marker.bindPopup('<b>' + row.Name + '</b><br>' + row.Type);
+                function addMarkersFromCSV(csvUrl) {
+                $.get(csvUrl, function(csvString) {
+                    Papa.parse(csvString, {
+                    header: true,
+                    delimiter: ';',
+                    dynamicTyping: true,
+                    complete: function(results) {
+                        console.log('Parsed CSV:', results);
+                        results.data.forEach(function(row) {
+                        console.log('Row:', row);
+                        var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+                        var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+                        var marker = L.marker([lat, lng]).addTo(map);
+                        marker.bindPopup(row.Name);
                         });
-                    }).catch(function(error) {
-                        console.error('Error loading CSV file:', error);
-                    });                let markers = []
+                    },
+                    error: function(error) {
+                        console.log('CSV parsing error:', error);
+                    }
+                    });
+                });
+                }
+
+
+                //addMarkersFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
+                addMarkersWithTriangulation('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
+
+
+                let markers = []
                 let stats = []
                 function onMapClick(e) {
                     document.getElementById('last-clicked-coord').innerHTML = e.latlng;
