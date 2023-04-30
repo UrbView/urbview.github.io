@@ -229,6 +229,13 @@
 				  return "rgb(" + r + ", " + g + ", " + b + ")";
 				}
 
+
+                var bus_icon = L.icon({
+                iconUrl: '../style/Software/City Icons/V3/Public Transport/Bus_V3_grey.svg.png',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -28]
+            })
 				// Create an array of points from the CSV data
 				var points = [];
 				var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
@@ -273,7 +280,8 @@
 									var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
 									var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
 									var marker = L.marker([lat, lng], {
-										draggable: true
+										draggable: true,
+                                        icon: bus_icon
 									}).addTo(map);
 									marker.bindPopup(row.Name);
 									marker.on('dragend', function(event) { // Listen to 'dragend' event
