@@ -1,0 +1,273 @@
+<style>
+    .header {
+      background-color:white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 15%;
+    }
+    
+    .header img:first-child {
+      margin-left: 10;
+    }
+    
+    .header img:last-child {
+      margin-right: 0;
+      width: 3%;
+      margin-right: 10;
+    }
+    
+    .result-section {
+      background-color: #f2f2f2;
+      padding: 50px 0;
+      text-align: center;
+    }
+    
+    .result-section h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .result-images {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 20px;
+    }
+    
+    .result-images img {
+      width: 15%;
+    }
+    
+    .bar {
+      height: 20px;
+      border-radius: 10px;
+      background-color: #ddd;
+      position: relative;
+    }
+    .green, .red {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      border-radius: 10px;
+    }
+    .green {
+      background-color: green;
+      left: 0;
+    }
+    .red {
+      background-color: red;
+      right: 0;
+    }
+    .green::after, .red::after {
+      content: attr(percentage);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: white;
+      padding: 0 5px;
+    }
+    .green::after {
+      right: 5px;
+    }
+    .red::after {
+      left: 5px;
+    }
+    
+    </style>
+    
+    
+    <html>
+    
+        <head>
+    
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+            integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    
+             <!-- Make sure you put this AFTER Leaflet's CSS -->
+            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+            <link rel="stylesheet" href="/css/urbstyle.css"/>
+    
+            <style>
+    
+                .row {
+                display: flex;
+                }
+    
+                .column {
+                flex: 25%;
+                }
+    
+                @font-face {
+                    font-family: urbfont;
+                    src: url('../style/barlow/barlow/Barlow-Bold.ttf');
+                    }
+    
+                    .h2{
+                    font-family: urbfont;
+                    }
+    
+                    @font-face {
+                    font-family: urbfontlight;
+                    src: url('../style/barlow/barlow/Barlow-Light.ttf');
+                    }
+                    .p{
+                        font-family: urbfontlight;
+                    }
+    
+            </style>
+    
+        </head>
+    
+        
+    
+        <body style="background-color: white; font-family: urbfont;">
+        <a id = 'last-clicked-coord' style="display: none;"></a>
+    
+            <div class="header">
+    
+            <img src="../style/png/global/UI_Assets-12.png">
+            <img src="../style/png/global/UI_Assets-10.png">
+    
+            </div>
+    
+            <div class="row">
+                <div class="column" style="background-color: whitesmoke">
+    
+    
+                    <div style = "margin-left: 10%;">
+    
+                        <br>
+                        <h2 style="font-size: 50;">
+    
+                            Delunay Triangulation
+        
+                        </h2>
+    
+                            <div style="width: 90%;">
+                                <p style="font-family: urbfontlight;">
+    
+                                  <a> A _ UWU</a>
+                                </p>
+                            </div>
+    
+                    </div>
+    
+    
+    
+                </div>
+                <div class="column">
+    
+                    <div id="map" style="height: 620px; width: 100%;"></div>
+    
+                </div>
+    
+            </div>
+
+    
+            <script>
+    
+    
+                var base_icon = L.icon({
+                    iconUrl: '../style/png/v1/UI_Assets-03.png',
+                    iconSize: [40, 50],
+                    iconAnchor: [20, 50],
+                    popupAnchor: [0, -50]
+                })
+    
+                var green_icon =  L.icon({
+                    iconUrl: '../style/png/v1/UI_Assets-04.png',
+                    iconSize: [40, 50],
+                    iconAnchor: [20, 50],
+                    iconAnchor: [20, 50],
+                    popupAnchor: [0, -50]
+                })
+    
+                var red_icon =  L.icon({
+                    iconUrl: '../style/png/v1/UI_Assets-05.png',
+                    iconSize: [40, 50],
+                    iconAnchor: [20, 50],
+                    iconAnchor: [20, 50],
+                    popupAnchor: [0, -50]
+                })
+    
+                var map = L.map('map').setView([53.5488, 9.9874], 14);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+                    maxZoom: 25,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                }).addTo(map);
+    
+                let markers = []
+                let stats = []
+                function onMapClick(e) {
+                    document.getElementById('last-clicked-coord').innerHTML = e.latlng;
+                    var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
+                    marker.bindPopup("Lat: " + e.latlng.lat + "<br>" + "Long: " + e.latlng.lng);
+                    markers.push(marker);
+                    setTimeout(function() {
+                        ask_urbview();
+                    }, 1500 * Math.random());
+                    console.log(markers);
+                }
+    
+                map.on('click', onMapClick);
+    
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+    
+                function calc_stats() {
+    
+                    let green_stat_buffer = 0
+                    stats.forEach(e => green_stat_buffer += e)
+                    p = 1 - green_stat_buffer / stats.length;
+                    document.getElementsByClassName("green")[0].style.width = p * 100 + "%"
+                    document.getElementsByClassName("green")[0].setAttribute('percentage', document.getElementsByClassName("green")[0].style.width)
+    
+                    document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
+                    document.getElementsByClassName("red")[0].setAttribute('percentage', document.getElementsByClassName("red")[0].style.width)
+    
+                }
+    
+                function ask_urbview(){
+    
+                    // Just for recording the demo and exemplify what we intend
+                    // Replace for the API endpoint and receive the text on production
+    
+                    var rangeArray = Array.from({length: markers.length}, (v, i) => i);
+    
+                    for (var i = 0; i < rangeArray.length; i++) {
+                        x = (Math.floor(Math.random() * 2) == 0);
+                            if(x){
+                                feeling = "good"
+                                icon = red_icon
+                                stats.push(0)
+                            }else{
+                                feeling = "bad"
+                                icon = green_icon
+                                stats.push(1)
+                            }
+    
+                        console.log(markers)
+    
+                        m = markers.pop(0)
+                        console.log(markers)
+                        m.setIcon(icon)
+                        if(feeling=="good"){
+                            m.bindPopup("I liked being there");
+                        }else{
+                            m.bindPopup("I felt insecure");
+                        }
+                    }
+                    calc_stats()
+                }
+    
+            </script>
+    
+        </body>
+    
+    </html>
+    
