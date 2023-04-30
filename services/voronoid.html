@@ -105,6 +105,7 @@
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
             <!-- Load D3.js library from CDN -->
             <script src="https://d3js.org/d3.v7.min.js"></script>
+            <script src="https://unpkg.com/delaunator@5.0.0/delaunator.min.js"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
@@ -215,7 +216,7 @@
                     popupAnchor: [0, -50]
                 })
     
-                var map = L.map('map').setView([53.5488, 9.9874], 14);
+                var map = L.map('map').setView([53.5488, 9.9874], 11);
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
                     maxZoom: 25,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -247,40 +248,65 @@
 
 
                 //addMarkersFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
-                addMarkersWithTriangulation('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv');
+// Create an array of points from the CSV data
+            var points = [];
+            $.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/reduced_hamburg.csv', function(csvString) {
+                Papa.parse(csvString, {
+                    header: true,
+                    delimiter: ';',
+                    dynamicTyping: true,
+                    complete: function(results) {
+                        //console.log('Parsed CSV:', results);
+                        results.data.forEach(function(row) {
+                          //  console.log('Row:', row);
+                          if ('Latitude' in row ) {
+                            if ('Longitude' in row ){
 
 
-                let markers = []
-                let stats = []
-                function onMapClick(e) {
-                    document.getElementById('last-clicked-coord').innerHTML = e.latlng;
-                    var marker = L.marker(e.latlng, {icon: base_icon}).addTo(map);
-                    marker.bindPopup("Lat: " + e.latlng.lat + "<br>" + "Long: " + e.latlng.lng);
-                    markers.push(marker);
-                    setTimeout(function() {
-                        ask_urbview();
-                    }, 1500 * Math.random());
-                    console.log(markers);
-                }
-    
-                map.on('click', onMapClick);
-    
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
-    
-                function calc_stats() {
-    
-                    let green_stat_buffer = 0
-                    stats.forEach(e => green_stat_buffer += e)
-                    p = 1 - green_stat_buffer / stats.length;
-                    document.getElementsByClassName("green")[0].style.width = p * 100 + "%"
-                    document.getElementsByClassName("green")[0].setAttribute('percentage', document.getElementsByClassName("green")[0].style.width)
-    
-                    document.getElementsByClassName("red")[0].style.width = (1 - p)* 100 + "%"
-                    document.getElementsByClassName("red")[0].setAttribute('percentage', document.getElementsByClassName("red")[0].style.width)
-    
-                }
+                            var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+                            var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+                            points.push([lat, lng]);} 
+
+                            }
+
+
+                        });
+                        // Compute the Delaunay triangulation
+                        var delaunay = Delaunator.from(points);
+                        // Create an array of triangles from the triangulation
+                        console.log(delaunay)
+                        var triangles = delaunay.triangles;
+                        // Add the triangles to the map
+                        for (var i = 0; i < triangles.length; i += 3) {
+                            var triangle = [                    points[triangles[i]],
+                                points[triangles[i + 1]],
+                                points[triangles[i + 2]]
+                            ];
+                            console.log(triangle)
+                            L.polygon(triangle, { color: 'red', fillOpacity: 0 }).addTo(map);
+                        }
+
+                        // Add markers to the map
+                        results.data.forEach(function(row) {
+                            if ('Latitude' in row ) {
+
+
+
+                                var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+                            var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+                            var marker = L.marker([lat, lng]).addTo(map);
+                            marker.bindPopup(row.Name);
+
+                            }
+
+                        });
+                    },
+                    error: function(error) {
+                        console.log('CSV parsing error:', error);
+                    }
+                });
+            });
+
     
                 function ask_urbview(){
     
