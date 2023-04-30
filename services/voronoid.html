@@ -258,6 +258,15 @@
 				  return "rgba(" + r + ", " + g + ", " + b + "," + a + ")"
 				}
 
+                function init_map(){
+                    var map = L.map('map').setView([53.5488, 9.9874], 11);
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+                        maxZoom: 25,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    }).addTo(map);
+
+                }
+
 
                 var bus_icon = L.icon({
                 iconUrl: '../style/Software/City Icons/V3/Public Transport/Bus_V3_black.svg.png',
@@ -265,6 +274,36 @@
                 iconAnchor: [14, 14],
                 popupAnchor: [0, -28]
             })
+
+
+
+
+            function drag_queen(event) { // Listen to 'dragend' event
+                    // Clear previous triangles
+                    trianglesLayer.clearLayers();
+                    // Recompute Delaunay triangulation using updated marker positions
+                    points = [];
+                    map.eachLayer(function(layer) {
+                        if (layer instanceof L.Marker) {
+                            var latLng = layer.getLatLng();
+                            points.push([latLng.lat, latLng.lng]);
+                        }
+                    });
+                    delaunay = Delaunator.from(points);
+                    // Add the new triangles to the map
+                    var triangles = delaunay.triangles;
+                    for (var i = 0; i < triangles.length; i += 3) {
+                        var triangle = [
+                            points[triangles[i]],
+                            points[triangles[i + 1]],
+                            points[triangles[i + 2]]
+                        ];
+                        L.polygon(triangle, {
+                            color: getRandomColor(),
+                            fillOpacity: 0.5
+                        }).addTo(trianglesLayer);
+										}
+				}
 				// Create an array of points from the CSV data
 				var points = [];
 				var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
@@ -285,6 +324,7 @@
 									}
 								}
 							});
+
 							// Compute the Delaunay triangulation
 							var delaunay = Delaunator.from(points);
 							// Create an array of triangles from the triangulation
@@ -313,32 +353,7 @@
                                         icon: bus_icon
 									}).addTo(map);
 									marker.bindPopup(row.Name);
-									marker.on('dragend', function(event) { // Listen to 'dragend' event
-										// Clear previous triangles
-										trianglesLayer.clearLayers();
-										// Recompute Delaunay triangulation using updated marker positions
-										points = [];
-										map.eachLayer(function(layer) {
-											if (layer instanceof L.Marker) {
-												var latLng = layer.getLatLng();
-												points.push([latLng.lat, latLng.lng]);
-											}
-										});
-										delaunay = Delaunator.from(points);
-										// Add the new triangles to the map
-										var triangles = delaunay.triangles;
-										for (var i = 0; i < triangles.length; i += 3) {
-											var triangle = [
-												points[triangles[i]],
-												points[triangles[i + 1]],
-												points[triangles[i + 2]]
-											];
-											L.polygon(triangle, {
-												color: getRandomColor(),
-												fillOpacity: 0.5
-											}).addTo(trianglesLayer);
-										}
-									});
+									marker.on('dragend', drag_queen)
 								}
 							});
 						},
@@ -347,7 +362,46 @@
 						}
 					});
 				});
-    
+
+
+
+
+
+                var addedPoints = []
+                map.on('click', function(event) { // Listen to 'click' event
+                        // Clear previous triangles
+                        var ll = event.latlng;
+                        trianglesLayer.clearLayers();
+                        // Recompute Delaunay triangulation using updated marker positions
+                        addedPoints.push([ll.lat, ll.lng])
+
+                        var marker = L.marker([ll.lat, ll.lng], {
+										draggable: true,
+                                        icon: bus_icon
+									}).addTo(map);
+                        marker.on('dragend'  , drag_queen);
+                        var points = [];
+                        map.eachLayer(function(layer) {
+                            if (layer instanceof L.Marker) {
+                            var latLng = layer.getLatLng();
+                            points.push([latLng.lat, latLng.lng]);
+                            }
+                        });
+                        points = points.concat( addedPoints);
+                        var delaunay = Delaunator.from(points);
+                        // Add the new triangles to the map
+                        var triangles = delaunay.triangles;
+                        for (var i = 0; i < triangles.length; i += 3) {
+                            var triangle = [      points[triangles[i]],
+                            points[triangles[i + 1]],
+                            points[triangles[i + 2]]
+                            ];
+                            L.polygon(triangle, {
+                            color: getRandomColor(),
+                            fillOpacity: Math.random()
+                            }).addTo(trianglesLayer);
+                        }
+                        });
                 function ask_urbview(){
     
                     // Just for recording the demo and exemplify what we intend
