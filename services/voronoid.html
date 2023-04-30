@@ -92,7 +92,13 @@
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
             <link rel="stylesheet" href="/css/urbstyle.css"/>
-    
+
+               <!-- Load Leaflet library from CDN -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            <!-- Load D3.js library from CDN -->
+            <script src="https://d3js.org/d3.v7.min.js"></script>
+            
             <style>
     
                 .row {
@@ -212,7 +218,30 @@
                         }
                     }).addTo(map);
                 });
-                let markers = []
+
+
+
+                d3.csv('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg.csv', function(data) {    // Check if data is an array or iterable object
+                        if (!Array.isArray(data) && !(typeof data[Symbol.iterator] === 'function')) {
+                            console.error('CSV file not parsed correctly:', data);
+                            return;
+                        }
+
+                        // Loop through each row of the CSV file
+                        data.forEach(function(row) {
+                            // Extract the latitude and longitude values
+                            var lat = parseFloat(row.Latitude.replace(',', '.'));
+                            var lng = parseFloat(row.Longitude.replace(',', '.'));
+
+                            // Create a marker for the stop and add it to the map
+                            var marker = L.marker([lat, lng]).addTo(map);
+
+                            // Add a popup to the marker with the stop name and type
+                            marker.bindPopup('<b>' + row.Name + '</b><br>' + row.Type);
+                        });
+                    }).catch(function(error) {
+                        console.error('Error loading CSV file:', error);
+                    });                let markers = []
                 let stats = []
                 function onMapClick(e) {
                     document.getElementById('last-clicked-coord').innerHTML = e.latlng;
