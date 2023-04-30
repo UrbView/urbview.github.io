@@ -229,24 +229,27 @@
                 
                   x = (Math.floor(Math.random() * 2) == 0);
                   var a = Math.floor(Math.random() * 255);
+                  var base = 200;
 
                 if(x){ 
-                    var r = 255;
-                    var g = 0;
+                    var g = 37;
+                    var r = 193;
+                    var b = 45;
                 } 
                 else{
-                    var g = 255;
+                    var g = 200;
                     var r = 0;
+                    var b = 72;
+
                 }
                 
 				 
-				  var b = 0;
 				  return "rgba(" + r + ", " + g + ", " + b + "," + a + ")"
 				}
 
 
                 var bus_icon = L.icon({
-                iconUrl: '../style/Software/City Icons/V3/Public Transport/Bus_V3_grey.svg.png',
+                iconUrl: '../style/Software/City Icons/V3/Public Transport/Bus_V3_black.svg.png',
                 iconSize: [28, 28],
                 iconAnchor: [14, 14],
                 popupAnchor: [0, -28]
