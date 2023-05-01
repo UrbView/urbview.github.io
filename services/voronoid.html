@@ -153,6 +153,20 @@
 		popupAnchor: [0, -28]
 	})
 
+	var green_icon =  L.icon({
+		iconUrl: '../style/png/v1/UI_Assets-04.png',
+		iconSize: [14, 14],
+		iconAnchor: [7, 7],
+		popupAnchor: [0, -28]
+	})
+
+	var red_icon =  L.icon({
+		iconUrl: '../style/png/v1/UI_Assets-05.png',
+		iconSize: [14, 14],
+		iconAnchor: [7, 7],
+		popupAnchor: [0, -28]
+	})
+
 	// Hamburg: 53.5488, 9.9874
 	var center = {lat: 53.5488, lng: 9.9874}; // Hamburg coordinates
 	// Delhi: 28.7041, 77.1025
@@ -219,11 +233,13 @@
 		}
 	}
 
+	var trianglesLayer; // Create a layer group for triangles
+
 	function createMapFromCSV(csvLink) {
 		// Create an array of points from the CSV data
 		// .csv must have "Name", "Latitude" and "Longitude", and use delimiter ; without index
 		var points = [];
-		var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
+		trianglesLayer = L.layerGroup().addTo(map);
 		$.get(csvLink, function(csvString) {
 			Papa.parse(csvString, {
 				header: true,
@@ -274,11 +290,44 @@
 				}
 			});
 		});
-		return trianglesLayer;
 	}
 
-	trianglesLayer = createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv')
-	//trianglesLayer = createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/delhi_bus_stops_small.csv')
+	function createHarassmentMapFromCSV(csvLink) {
+		// Create an array of points from the CSV data
+		// .csv must have "Name", "Latitude", "Longitude" and "Label", and use delimiter ; without index
+		var points = [];
+		var harassmentLayer = L.layerGroup().addTo(map); // Create a layer group for coordinates
+		$.get(csvLink, function(csvString) {
+			Papa.parse(csvString, {
+				header: true,
+				delimiter: ';',
+				dynamicTyping: true,
+				complete: function(results) {
+					// Add markers to the map
+					results.data.forEach(function(row) {
+						if ('Latitude' in row) {
+							var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+							var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+							var icon = (row.Label === 'good') ? green_icon : red_icon;
+							var marker = L.marker([lat, lng], {
+								draggable: true,
+								icon: icon
+							}).addTo(map);
+							marker.bindPopup(row.Name);
+						}
+					});
+				},
+				error: function(error) {
+					console.log('CSV parsing error:', error);
+				}
+			});
+		});
+	}
+
+	createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv')
+
+	createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/delhi_bus_stops.csv')
+	//createHarassmentMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/delhi_sh_coords.csv')
 
 	var addedPoints = []
 	map.on('click', function(event) { // Listen to 'click' event
@@ -300,7 +349,7 @@
 			points.push([latLng.lat, latLng.lng]);
 			}
 		});
-		points = points.concat( addedPoints);
+		points = points.concat(addedPoints);
 		var delaunay = Delaunator.from(points);
 		// Add the new triangles to the map
 		var triangles = delaunay.triangles;
