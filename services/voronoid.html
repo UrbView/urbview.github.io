@@ -16,66 +16,6 @@
       width: 3%;
       margin-right: 10;
     }
-    
-    .result-section {
-      background-color: #f2f2f2;
-      padding: 50px 0;
-      text-align: center;
-    }
-    
-    .result-section h2 {
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-    
-    .result-images {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      margin-top: 20px;
-    }
-    
-    .result-images img {
-      width: 15%;
-    }
-    
-    .bar {
-      height: 20px;
-      border-radius: 10px;
-      background-color: #ddd;
-      position: relative;
-    }
-    .green, .red {
-      height: 100%;
-      position: absolute;
-      top: 0;
-      border-radius: 10px;
-    }
-    .green {
-      background-color: green;
-      left: 0;
-    }
-    .red {
-      background-color: red;
-      right: 0;
-    }
-    .green::after, .red::after {
-      content: attr(percentage);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 12px;
-      color: white;
-      padding: 0 5px;
-    }
-    .green::after {
-      right: 5px;
-    }
-    .red::after {
-      left: 5px;
-    }
-    
-
 </style>
 
 
@@ -116,30 +56,30 @@
 
 	<style>
     
-                .row {
-                display: flex;
-                }
-    
-                .column {
-                flex: 25%;
-                }
-    
-                @font-face {
-                    font-family: urbfont;
-                    src: url('../style/barlow/barlow/Barlow-Bold.ttf');
-                    }
-    
-                    .h2{
-                    font-family: urbfont;
-                    }
-    
-                    @font-face {
-                    font-family: urbfontlight;
-                    src: url('../style/barlow/barlow/Barlow-Light.ttf');
-                    }
-                    .p{
-                        font-family: urbfontlight;
-                    }
+		.row {
+		display: flex;
+		}
+
+		.column {
+		flex: 25%;
+		}
+
+		@font-face {
+			font-family: urbfont;
+			src: url('../style/barlow/barlow/Barlow-Bold.ttf');
+			}
+
+			.h2{
+			font-family: urbfont;
+			}
+
+			@font-face {
+			font-family: urbfontlight;
+			src: url('../style/barlow/barlow/Barlow-Light.ttf');
+			}
+			.p{
+				font-family: urbfontlight;
+		}
     
 
 	</style>
@@ -152,8 +92,8 @@
 
 <div class="header">
 
-	<img src="../style/png/global/UI_Assets-12.png">
-	<img src="../style/png/global/UI_Assets-10.png">
+	<img src="../style/features/header/logo.png">
+	<img src="../style/features/header/profile.png">
 
 </div>
 
@@ -205,235 +145,172 @@
 
 
 <script>
-    
-    
-                var base_icon = L.icon({
-                    iconUrl: '../style/png/v1/UI_Assets-03.png',
-                    iconSize: [40, 50],
-                    iconAnchor: [20, 50],
-                    popupAnchor: [0, -50]
-                })
-    
-                var green_icon =  L.icon({
-                    iconUrl: '../style/png/v1/UI_Assets-04.png',
-                    iconSize: [40, 50],
-                    iconAnchor: [20, 50],
-                    iconAnchor: [20, 50],
-                    popupAnchor: [0, -50]
-                })
-    
-                var red_icon =  L.icon({
-                    iconUrl: '../style/png/v1/UI_Assets-05.png',
-                    iconSize: [40, 50],
-                    iconAnchor: [20, 50],
-                    iconAnchor: [20, 50],
-                    popupAnchor: [0, -50]
-                })
-    
-                var map = L.map('map').setView([53.5488, 9.9874], 11);
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-                    maxZoom: 25,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                }).addTo(map);
 
-                function getRandomColor() {
-                
-                  x = (Math.floor(Math.random() * 2) == 0);
-                  var a = Math.floor(Math.random() * 255);
-                  var base = 200;
+	var bus_icon = L.icon({
+		iconUrl: '../style/features/public_transport_graph/bus_icon.png',
+		iconSize: [28, 28],
+		iconAnchor: [14, 14],
+		popupAnchor: [0, -28]
+	})
 
-                if(x){ 
-                    var g = 37;
-                    var r = 193;
-                    var b = 45;
-                } 
-                else{
-                    var g = 200;
-                    var r = 0;
-                    var b = 72;
+	// Hamburg: 53.5488, 9.9874
+	var map = L.map('map').setView([53.5488, 9.9874], 11);
+	L.tileLayer(
+		'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+		{
+			maxZoom: 25,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		}
+	).addTo(map);
 
-                }
-                
-				 
-				  return "rgba(" + r + ", " + g + ", " + b + "," + a + ")"
-				}
+	function getRandomColor() {
+		x = (Math.floor(Math.random() * 2) == 0);
+		var a = Math.floor(Math.random() * 255);
+		var base = 200;
+		if(x){
+			var g = 37;
+			var r = 193;
+			var b = 45;
+		}
+		else{
+			var g = 200;
+			var r = 0;
+			var b = 72;
+		}
+		return "rgba(" + r + ", " + g + ", " + b + "," + a + ")"
+	}
 
-                function init_map(){
-                    var map = L.map('map').setView([53.5488, 9.9874], 11);
-                    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-                        maxZoom: 25,
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                    }).addTo(map);
+	function init_map(){
+		var map = L.map('map').setView([53.5488, 9.9874], 11);
+		L.tileLayer(
+			'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+			{
+				maxZoom: 25,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+			}
+		).addTo(map);
+	}
 
-                }
+	function update_lunay_triangulation(event) { // Listen to 'dragend' event
+		// Clear previous triangles
+		trianglesLayer.clearLayers();
+		// Recompute Delaunay triangulation using updated marker positions
+		points = [];
+		map.eachLayer(function(layer) {
+			if (layer instanceof L.Marker) {
+				var latLng = layer.getLatLng();
+				points.push([latLng.lat, latLng.lng]);
+			}
+		});
+		delaunay = Delaunator.from(points);
+		// Add the new triangles to the map
+		var triangles = delaunay.triangles;
+		for (var i = 0; i < triangles.length; i += 3) {
+			var triangle = [
+				points[triangles[i]],
+				points[triangles[i + 1]],
+				points[triangles[i + 2]]
+			];
+			L.polygon(triangle, {
+				color: getRandomColor(),
+				fillOpacity: Math.random()
+			}).addTo(trianglesLayer);
+		}
+	}
 
-
-                var bus_icon = L.icon({
-                iconUrl: '../style/Software/City Icons/V3/Public Transport/Bus_V3_black.svg.png',
-                iconSize: [28, 28],
-                iconAnchor: [14, 14],
-                popupAnchor: [0, -28]
-            })
-
-
-
-
-            function drag_queen(event) { // Listen to 'dragend' event
-                    // Clear previous triangles
-                    trianglesLayer.clearLayers();
-                    // Recompute Delaunay triangulation using updated marker positions
-                    points = [];
-                    map.eachLayer(function(layer) {
-                        if (layer instanceof L.Marker) {
-                            var latLng = layer.getLatLng();
-                            points.push([latLng.lat, latLng.lng]);
-                        }
-                    });
-                    delaunay = Delaunator.from(points);
-                    // Add the new triangles to the map
-                    var triangles = delaunay.triangles;
-                    for (var i = 0; i < triangles.length; i += 3) {
-                        var triangle = [
-                            points[triangles[i]],
-                            points[triangles[i + 1]],
-                            points[triangles[i + 2]]
-                        ];
-                        L.polygon(triangle, {
-                            color: getRandomColor(),
-                            fillOpacity: 0.5
-                        }).addTo(trianglesLayer);
-										}
-				}
-				// Create an array of points from the CSV data
-				var points = [];
-				var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
-				$.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv', function(csvString) {
-					Papa.parse(csvString, {
-						header: true,
-						delimiter: ';',
-						dynamicTyping: true,
-						complete: function(results) {
-							//console.log('Parsed CSV:', results);
-							results.data.forEach(function(row) {
-								// console.log('Row:', row);
-								if ('Latitude' in row) {
-									if ('Longitude' in row) {
-										var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-										var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-										points.push([lat, lng]);
-									}
-								}
-							});
-
-							// Compute the Delaunay triangulation
-							var delaunay = Delaunator.from(points);
-							// Create an array of triangles from the triangulation
-							console.log(delaunay)
-							var triangles = delaunay.triangles;
-							// Add the triangles to the map
-							for (var i = 0; i < triangles.length; i += 3) {
-								var triangle = [
-									points[triangles[i]],
-									points[triangles[i + 1]],
-									points[triangles[i + 2]]
-								];
-								console.log(triangle)
-								L.polygon(triangle, {
-									color: getRandomColor(),
-									fillOpacity: Math.random()
-								}).addTo(trianglesLayer);
-							}
-							// Add markers to the map
-							results.data.forEach(function(row) {
-								if ('Latitude' in row) {
-									var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-									var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-									var marker = L.marker([lat, lng], {
-										draggable: true,
-                                        icon: bus_icon
-									}).addTo(map);
-									marker.bindPopup(row.Name);
-									marker.on('dragend', drag_queen)
-								}
-							});
-						},
-						error: function(error) {
-							console.log('CSV parsing error:', error);
+	// Create an array of points from the CSV data
+	var points = [];
+	var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
+	$.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv', function(csvString) {
+		Papa.parse(csvString, {
+			header: true,
+			delimiter: ';',
+			dynamicTyping: true,
+			complete: function(results) {
+				//console.log('Parsed CSV:', results);
+				results.data.forEach(function(row) {
+					// console.log('Row:', row);
+					if ('Latitude' in row) {
+						if ('Longitude' in row) {
+							var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+							var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+							points.push([lat, lng]);
 						}
-					});
+					}
 				});
 
+				// Compute the Delaunay triangulation
+				var delaunay = Delaunator.from(points);
+				// Create an array of triangles from the triangulation
+				var triangles = delaunay.triangles;
+				// Add the triangles to the map
+				for (var i = 0; i < triangles.length; i += 3) {
+					var triangle = [
+						points[triangles[i]],
+						points[triangles[i + 1]],
+						points[triangles[i + 2]]
+					];
+					console.log(triangle)
+					L.polygon(triangle, {
+						color: getRandomColor(),
+						fillOpacity: Math.random()
+					}).addTo(trianglesLayer);
+				}
+				// Add markers to the map
+				results.data.forEach(function(row) {
+					if ('Latitude' in row) {
+						var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+						var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+						var marker = L.marker([lat, lng], {
+							draggable: true,
+							icon: bus_icon
+						}).addTo(map);
+						marker.bindPopup(row.Name);
+						marker.on('dragend', update_lunay_triangulation)
+					}
+				});
+			},
+			error: function(error) {
+				console.log('CSV parsing error:', error);
+			}
+		});
+	});
 
+	var addedPoints = []
+	map.on('click', function(event) { // Listen to 'click' event
+		// Clear previous triangles
+		var ll = event.latlng;
+		trianglesLayer.clearLayers();
+		// Recompute Delaunay triangulation using updated marker positions
+		addedPoints.push([ll.lat, ll.lng])
 
-
-
-                var addedPoints = []
-                map.on('click', function(event) { // Listen to 'click' event
-                        // Clear previous triangles
-                        var ll = event.latlng;
-                        trianglesLayer.clearLayers();
-                        // Recompute Delaunay triangulation using updated marker positions
-                        addedPoints.push([ll.lat, ll.lng])
-
-                        var marker = L.marker([ll.lat, ll.lng], {
-										draggable: true,
-                                        icon: bus_icon
-									}).addTo(map);
-                        marker.on('dragend'  , drag_queen);
-                        var points = [];
-                        map.eachLayer(function(layer) {
-                            if (layer instanceof L.Marker) {
-                            var latLng = layer.getLatLng();
-                            points.push([latLng.lat, latLng.lng]);
-                            }
-                        });
-                        points = points.concat( addedPoints);
-                        var delaunay = Delaunator.from(points);
-                        // Add the new triangles to the map
-                        var triangles = delaunay.triangles;
-                        for (var i = 0; i < triangles.length; i += 3) {
-                            var triangle = [      points[triangles[i]],
-                            points[triangles[i + 1]],
-                            points[triangles[i + 2]]
-                            ];
-                            L.polygon(triangle, {
-                            color: getRandomColor(),
-                            fillOpacity: Math.random()
-                            }).addTo(trianglesLayer);
-                        }
-                        });
-                function ask_urbview(){
-    
-                    // Just for recording the demo and exemplify what we intend
-                    // Replace for the API endpoint and receive the text on production
-    
-                    var rangeArray = Array.from({length: markers.length}, (v, i) => i);
-    
-                    for (var i = 0; i < rangeArray.length; i++) {
-                        x = (Math.floor(Math.random() * 2) == 0);
-                            if(x){
-                                feeling = "good"
-                                icon = red_icon
-                                stats.push(0)
-                            }else{
-                                feeling = "bad"
-                                icon = green_icon
-                                stats.push(1)
-                            }
-    
-                        console.log(markers)
-    
-                        m = markers.pop(0)
-                        console.log(markers)
-                        m.setIcon(icon)
-                        if(feeling=="good"){
-                            m.bindPopup("I liked being there");
-                        }else{
-                            m.bindPopup("I felt insecure");
-                        }
-                    }
-                    calc_stats()
-                }
+		var marker = L.marker([ll.lat, ll.lng], {
+						draggable: true,
+						icon: bus_icon
+					}).addTo(map);
+		marker.on('dragend', update_lunay_triangulation);
+		var points = [];
+		map.eachLayer(function(layer) {
+			if (layer instanceof L.Marker) {
+			var latLng = layer.getLatLng();
+			points.push([latLng.lat, latLng.lng]);
+			}
+		});
+		points = points.concat( addedPoints);
+		var delaunay = Delaunator.from(points);
+		// Add the new triangles to the map
+		var triangles = delaunay.triangles;
+		for (var i = 0; i < triangles.length; i += 3) {
+			var triangle = [      points[triangles[i]],
+			points[triangles[i + 1]],
+			points[triangles[i + 2]]
+			];
+			L.polygon(triangle, {
+			color: getRandomColor(),
+			fillOpacity: Math.random()
+			}).addTo(trianglesLayer);
+		}
+	});
     
 
 </script>
