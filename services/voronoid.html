@@ -219,6 +219,7 @@
 	}
 
 	// Create an array of points from the CSV data
+	// .csv must have "Name", "Latitude" and "Longitude"
 	var points = [];
 	var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
 	$.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv', function(csvString) {
