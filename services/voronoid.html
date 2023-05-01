@@ -154,14 +154,15 @@
 	})
 
 	// Hamburg: 53.5488, 9.9874
-	var map = L.map('map').setView([53.5488, 9.9874], 11);
-	L.tileLayer(
-		'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
-		{
-			maxZoom: 25,
-			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-		}
-	).addTo(map);
+	var center = {lat: 53.5488, lng: 9.9874}; // Hamburg coordinates
+	// Delhi: 28.7041, 77.1025
+	// var center = {lat: 28.7041, lng: 77.1025}; // Delhi coordinates
+
+	var map = L.map('map').setView(center, 11);
+	L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',	{
+		maxZoom: 25,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	}).addTo(map);
 
 	function getRandomColor() {
 		x = (Math.floor(Math.random() * 2) == 0);
@@ -218,64 +219,66 @@
 		}
 	}
 
-	// Create an array of points from the CSV data
-	// .csv must have "Name", "Latitude" and "Longitude"
-	var points = [];
-	var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
-	$.get('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv', function(csvString) {
-		Papa.parse(csvString, {
-			header: true,
-			delimiter: ';',
-			dynamicTyping: true,
-			complete: function(results) {
-				//console.log('Parsed CSV:', results);
-				results.data.forEach(function(row) {
-					// console.log('Row:', row);
-					if ('Latitude' in row) {
-						if ('Longitude' in row) {
+	function createMapFromCSV(csvLink) {
+		// Create an array of points from the CSV data
+		// .csv must have "Name", "Latitude" and "Longitude", and use delimiter ; without index
+		var points = [];
+		var trianglesLayer = L.layerGroup().addTo(map); // Create a layer group for triangles
+		$.get(csvLink, function(csvString) {
+			Papa.parse(csvString, {
+				header: true,
+				delimiter: ';',
+				dynamicTyping: true,
+				complete: function(results) {
+					results.data.forEach(function(row) {
+						if ('Latitude' in row) {
+							if ('Longitude' in row) {
+								var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
+								var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
+								points.push([lat, lng]);
+							}
+						}
+					});
+					// Compute the Delaunay triangulation
+					var delaunay = Delaunator.from(points);
+					// Create an array of triangles from the triangulation
+					var triangles = delaunay.triangles;
+					// Add the triangles to the map
+					for (var i = 0; i < triangles.length; i += 3) {
+						var triangle = [
+							points[triangles[i]],
+							points[triangles[i + 1]],
+							points[triangles[i + 2]]
+						];
+						L.polygon(triangle, {
+							color: getRandomColor(),
+							fillOpacity: Math.random()
+						}).addTo(trianglesLayer);
+					}
+					// Add markers to the map
+					results.data.forEach(function(row) {
+						if ('Latitude' in row) {
 							var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
 							var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-							points.push([lat, lng]);
+							var marker = L.marker([lat, lng], {
+								draggable: true,
+								icon: bus_icon
+							}).addTo(map);
+							marker.bindPopup(row.Name);
+							marker.on('dragend', update_lunay_triangulation)
 						}
-					}
-				});
-
-				// Compute the Delaunay triangulation
-				var delaunay = Delaunator.from(points);
-				// Create an array of triangles from the triangulation
-				var triangles = delaunay.triangles;
-				// Add the triangles to the map
-				for (var i = 0; i < triangles.length; i += 3) {
-					var triangle = [
-						points[triangles[i]],
-						points[triangles[i + 1]],
-						points[triangles[i + 2]]
-					];
-					console.log(triangle)
-					L.polygon(triangle, {
-						color: getRandomColor(),
-						fillOpacity: Math.random()
-					}).addTo(trianglesLayer);
+					});
+				},
+				error: function(error) {
+					console.log('CSV parsing error:', error);
 				}
-				// Add markers to the map
-				results.data.forEach(function(row) {
-					if ('Latitude' in row) {
-						var lat = parseFloat(row.Latitude.toString().replace(',', '.'));
-						var lng = parseFloat(row.Longitude.toString().replace(',', '.'));
-						var marker = L.marker([lat, lng], {
-							draggable: true,
-							icon: bus_icon
-						}).addTo(map);
-						marker.bindPopup(row.Name);
-						marker.on('dragend', update_lunay_triangulation)
-					}
-				});
-			},
-			error: function(error) {
-				console.log('CSV parsing error:', error);
-			}
+			});
 		});
-	});
+		return trianglesLayer;
+	}
+
+	trianglesLayer = createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/hamburg_small.csv')
+	//trianglesLayer = createMapFromCSV('https://raw.githubusercontent.com/UrbView/urbview.github.io/main/data/delhi_bus_stops_small.csv')
 
 	var addedPoints = []
 	map.on('click', function(event) { // Listen to 'click' event
