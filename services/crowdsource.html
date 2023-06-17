@@ -2,11 +2,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-
     <style>
         body {
             background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
         }
 
         .container {
@@ -18,7 +17,7 @@
 
         .card {
             width: 300px;
-            max-height: 400px;
+            height: 400px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -28,6 +27,7 @@
             padding: 20px;
             text-align: center;
             transition: transform 0.3s, opacity 0.3s;
+            margin: 20px;
         }
 
         .question {
@@ -37,6 +37,7 @@
         .options {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
 
         .option {
@@ -72,6 +73,9 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
         }
 
         .form-submit {
@@ -82,6 +86,25 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .map-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .map {
+            height: 100%;
+            width: 100%;
+        }
+
+        .loading-message {
+            margin-top: 120px;
+            font-weight: bold;
+        }
+
+        .thanks-message {
+            margin-top: 80px;
         }
     </style>
 </head>
@@ -95,20 +118,22 @@
                 <textarea class="form-input" id="experienceManager" placeholder="Your Experience"></textarea>
                 <button class="form-submit">Submit</button>
             </div>
-            <div id="map" class="mapy" style="height: 620px; width: 100%;display: none;">
-                <h3>Loading...</h3>
+            <div class="map-container" style="display: none;">
+                <div id="map" class="map"></div>
+                <div class="loading-message">Loading...</div>
             </div>
 
-            <div class="options" id = "options">
+            <div class="options">
                 <div class="option left-option">Yes</div>
                 <div class="option right-option">No</div>
             </div>
-            <div id="thanks" class="thanks" style="display: none;">
-                <h3>Thanks for participating, you can refresh your screen...</h3>
-                <div class="left-option" style="margin-left: 50%;">No Problem!</div>
+            <div class="thanks-message" style="display: none;">
+                <h3>Thanks for participating! You can refresh your screen...</h3>
             </div>
         </div>
     </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
     <script>
         const questions = [
@@ -146,12 +171,8 @@
                 text: 'Thanks!',
                 yesText: '404',
                 noText: '404'
-            },
-
-
-            // Add more questions as needed
+            }
         ];
-
 
         let currentQuestionIndex = 0;
         let currentQuestion = questions[currentQuestionIndex];
@@ -164,12 +185,13 @@
         const submitButton = card.querySelector('.form-submit');
         const leftOption = card.querySelector('.left-option');
         const rightOption = card.querySelector('.right-option');
-        const showLocation = card.querySelector('.mapy');
-        const options = card.querySelector('.options')
+        const mapContainer = card.querySelector('.map-container');
+        const loadingMessage = card.querySelector('.loading-message');
+        const thanksMessage = card.querySelector('.thanks-message');
 
         leftOption.addEventListener('click', handleLeftClick);
         rightOption.addEventListener('click', handleRightClick);
-        submitButton.addEventListener('click', handleLeftClick)
+        submitButton.addEventListener('click', handleLeftClick);
 
         function getLocation() {
             return new Promise(function (resolve, reject) {
@@ -195,55 +217,56 @@
             });
         }
 
-
         function handleLeftClick() {
-            if (currentQuestion.text === 'Share your experience with the community:') {
-                const name = nameInput.value;
-                const experience = experienceInput.value;
-                console.log('Submitted Experience:');
-                console.log('Name:', name);
-                console.log('Experience:', experience);
-            } 
+  if (currentQuestion.text === 'Share your experience with the community:') {
+    const name = nameInput.value;
+    const experience = experienceInput.value;
+    console.log('Submitted Experience:');
+    console.log('Name:', name);
+    console.log('Experience:', experience);
+  }
 
-            card.style.transform = 'translateX(-1000px)';
-            card.style.opacity = '0';
+  card.addEventListener('transitionend', transitionEndHandlerLeft);
+  card.style.transform = 'translateX(-1000px)';
+  card.style.opacity = '0';
+}
 
-            showNextQuestion(currentQuestion.yesText);
-        }
+function handleRightClick() {
+  if (currentQuestion.text === 'Share your experience with the community:') {
+    const name = nameInput.value;
+    const experience = experienceInput.value;
+    console.log('Cancelled Experience:');
+    console.log('Name:', name);
+    console.log('Experience:', experience);
+  }
 
-        var base_icon = L.icon({
+  card.addEventListener('transitionend', transitionEndHandler);
+  card.style.transform = 'translateX(1000px)';
+  card.style.opacity = '0';
+}
+
+function transitionEndHandler() {
+  card.removeEventListener('transitionend', transitionEndHandler);
+  showNextQuestion(currentQuestion.noText);
+}
+function transitionEndHandlerLeft() {
+  card.removeEventListener('transitionend', transitionEndHandlerLeft);
+  showNextQuestion(currentQuestion.yesText);
+}
+        var baseIcon = L.icon({
             iconUrl: '../style/png/v1/UI_Assets-03.png',
             iconSize: [40, 50],
             iconAnchor: [20, 50],
             popupAnchor: [0, -50]
-        })
-
-        function handleRightClick() {
-            if (currentQuestion.text === 'Share your experience with the community:') {
-                const name = nameInput.value;
-                const experience = experienceInput.value;
-                console.log('Cancelled Experience:');
-                console.log('Name:', name);
-                console.log('Experience:', experience);
-            } 
-
-            card.style.transform = 'translateX(1000px)';
-            card.style.opacity = '0';
-
-            showNextQuestion(currentQuestion.noText);
-        }
+        });
 
         function showNextQuestion(answer) {
-            
-            console.log(answer);
             currentQuestionIndex = -1;
             for (let i = 0; i < questions.length; i++) {
                 if (questions[i].text === answer) {
                     currentQuestionIndex = i;
                 }
             }
-
-            console.log(currentQuestionIndex);
 
             if (currentQuestionIndex >= questions.length || currentQuestionIndex === -1) {
                 console.log('No more questions');
@@ -253,17 +276,16 @@
             currentQuestion = questions[currentQuestionIndex];
             questionElement.textContent = currentQuestion.text;
 
-
             if (currentQuestion.text === 'Share your experience with the community:') {
                 formElement.style.display = 'flex';
-                options.style.display = 'none'
-                
+                mapContainer.style.display = 'none';
+                thanksMessage.style.display = 'none';
             } else if (currentQuestion.text === 'Is this location correct?') {
-                showLocation.style.display = 'flex';
+                mapContainer.style.display = 'flex';
 
                 getLocation()
                     .then(function (latLng) {
-                        showLocation.innerHTML = "";
+                        loadingMessage.textContent = '';
                         console.log('Latitude:', latLng.latitude);
                         console.log('Longitude:', latLng.longitude);
                         var map = L.map('map').setView([41.564021, 2.006508], 16);
@@ -274,7 +296,7 @@
 
                         // Use the latLng object as needed
                         map.setView([latLng.latitude, latLng.longitude], 16);
-                        var marker = L.marker([latLng.latitude, latLng.longitude], { icon: base_icon }).addTo(map);
+                        var marker = L.marker([latLng.latitude, latLng.longitude], { icon: baseIcon }).addTo(map);
                     })
                     .catch(function (error) {
                         console.log('Error:', error);
@@ -282,16 +304,12 @@
                     });
             } else if (currentQuestion.text === 'Thanks!') {
                 formElement.style.display = 'none';
-                document.getElementById('thanks').display = 'flex'
-
-                options.style.display = 'none'
+                mapContainer.style.display = 'none';
+                thanksMessage.style.display = 'flex';
             } else {
                 formElement.style.display = 'none';
-                showLocation.style.display = 'none';
-                document.getElementById('thanks').display = 'none'
-
-                options.style.display = 'flex'
-
+                mapContainer.style.display = 'none';
+                thanksMessage.style.display = 'none';
             }
 
             card.style.transform = 'none';
