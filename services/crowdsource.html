@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <style>
+        body {
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 300px;
+            max-height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .question {
+            font-size: 24px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .option {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        .option:hover {
+            opacity: 0.8;
+        }
+
+        .left-option {
+            background-color: green;
+            color: white;
+        }
+
+        .right-option {
+            background-color: red;
+            color: white;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .form-submit {
+            width: 100px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="question">Share your experience with the community:</div>
+
+            <div class="form" style="display: none;">
+                <input class="form-input" type="text" placeholder="Your Name">
+                <textarea class="form-input" id="experienceManager" placeholder="Your Experience"></textarea>
+                <button class="form-submit">Submit</button>
+            </div>
+            <div id="map" class="mapy" style="height: 620px; width: 100%;display: none;">
+                <h3>Loading...</h3>
+            </div>
+
+            <div class="options" id = "options">
+                <div class="option left-option">Yes</div>
+                <div class="option right-option">No</div>
+            </div>
+            <div id="thanks" class="thanks" style="display: none;">
+                <h3>Thanks for participating, you can refresh your screen...</h3>
+                <div class="left-option" style="margin-left: 50%;">No Problem!</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: 'Do you want to use your location?',
+                yesText: 'Is this location correct?',
+                noText: 'Do you want to search a location?'
+            },
+            {
+                text: 'Is this location correct?',
+                yesText: 'Do you want to share your experience?',
+                noText: 'Please enter your location.'
+            },
+            {
+                text: 'Please enter your location.',
+                yesText: 'Do you want to share your experience?',
+                noText: 'Do you want to share your experience?'
+            },
+            {
+                text: 'Do you want to share your experience?',
+                yesText: 'Share your experience with the community:',
+                noText: 'Thanks!'
+            },
+            {
+                text: 'Share your experience with the community:',
+                yesText: 'Thanks!',
+                noText: 'Thanks!'
+            },
+            {
+                text: 'Do you want to search a location?',
+                yesText: 'Please enter your location.',
+                noText: 'Do you want to share your experience?'
+            },
+            {
+                text: 'Thanks!',
+                yesText: '404',
+                noText: '404'
+            },
+
+
+            // Add more questions as needed
+        ];
+
+
+        let currentQuestionIndex = 0;
+        let currentQuestion = questions[currentQuestionIndex];
+
+        const card = document.querySelector('.card');
+        const questionElement = card.querySelector('.question');
+        const formElement = card.querySelector('.form');
+        const nameInput = card.querySelector('.form-input[type="text"]');
+        const experienceInput = document.getElementById('experienceManager');
+        const submitButton = card.querySelector('.form-submit');
+        const leftOption = card.querySelector('.left-option');
+        const rightOption = card.querySelector('.right-option');
+        const showLocation = card.querySelector('.mapy');
+        const options = card.querySelector('.options')
+
+        leftOption.addEventListener('click', handleLeftClick);
+        rightOption.addEventListener('click', handleRightClick);
+        submitButton.addEventListener('click', handleLeftClick)
+
+        function getLocation() {
+            return new Promise(function (resolve, reject) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+                } else {
+                    reject('Geolocation is not supported by this browser.');
+                }
+
+                function successCallback(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var latLng = {
+                        latitude: latitude,
+                        longitude: longitude
+                    };
+                    resolve(latLng);
+                }
+
+                function errorCallback(error) {
+                    reject('Error occurred while retrieving the location: ' + error.message);
+                }
+            });
+        }
+
+
+        function handleLeftClick() {
+            if (currentQuestion.text === 'Share your experience with the community:') {
+                const name = nameInput.value;
+                const experience = experienceInput.value;
+                console.log('Submitted Experience:');
+                console.log('Name:', name);
+                console.log('Experience:', experience);
+            } 
+
+            card.style.transform = 'translateX(-1000px)';
+            card.style.opacity = '0';
+
+            showNextQuestion(currentQuestion.yesText);
+        }
+
+        var base_icon = L.icon({
+            iconUrl: '../style/png/v1/UI_Assets-03.png',
+            iconSize: [40, 50],
+            iconAnchor: [20, 50],
+            popupAnchor: [0, -50]
+        })
+
+        function handleRightClick() {
+            if (currentQuestion.text === 'Share your experience with the community:') {
+                const name = nameInput.value;
+                const experience = experienceInput.value;
+                console.log('Cancelled Experience:');
+                console.log('Name:', name);
+                console.log('Experience:', experience);
+            } 
+
+            card.style.transform = 'translateX(1000px)';
+            card.style.opacity = '0';
+
+            showNextQuestion(currentQuestion.noText);
+        }
+
+        function showNextQuestion(answer) {
+            
+            console.log(answer);
+            currentQuestionIndex = -1;
+            for (let i = 0; i < questions.length; i++) {
+                if (questions[i].text === answer) {
+                    currentQuestionIndex = i;
+                }
+            }
+
+            console.log(currentQuestionIndex);
+
+            if (currentQuestionIndex >= questions.length || currentQuestionIndex === -1) {
+                console.log('No more questions');
+                return;
+            }
+
+            currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.text;
+
+
+            if (currentQuestion.text === 'Share your experience with the community:') {
+                formElement.style.display = 'flex';
+                options.style.display = 'none'
+                
+            } else if (currentQuestion.text === 'Is this location correct?') {
+                showLocation.style.display = 'flex';
+
+                getLocation()
+                    .then(function (latLng) {
+                        showLocation.innerHTML = "";
+                        console.log('Latitude:', latLng.latitude);
+                        console.log('Longitude:', latLng.longitude);
+                        var map = L.map('map').setView([41.564021, 2.006508], 16);
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 25,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+
+                        // Use the latLng object as needed
+                        map.setView([latLng.latitude, latLng.longitude], 16);
+                        var marker = L.marker([latLng.latitude, latLng.longitude], { icon: base_icon }).addTo(map);
+                    })
+                    .catch(function (error) {
+                        console.log('Error:', error);
+                        // Handle the error case
+                    });
+            } else if (currentQuestion.text === 'Thanks!') {
+                formElement.style.display = 'none';
+                document.getElementById('thanks').display = 'flex'
+
+                options.style.display = 'none'
+            } else {
+                formElement.style.display = 'none';
+                showLocation.style.display = 'none';
+                document.getElementById('thanks').display = 'none'
+
+                options.style.display = 'flex'
+
+            }
+
+            card.style.transform = 'none';
+            card.style.opacity = '1';
+        }
+
+        // Set the initial question
+        questionElement.textContent = currentQuestion.text;
+    </script>
+</body>
+</html>
