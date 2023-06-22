@@ -106,11 +106,86 @@
         .thanks-message {
             margin-top: 80px;
         }
+
+       .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+
+
+        .header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        .header nav {
+            margin-top: 20px;
+        }
+
+        .header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+
+        .tabs a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
     </style>
+
 </head>
+
 <body>
+    <header>
+        <div class="header">
+            <img src="https://showroom.rawpicture-studios.de/wp-content/uploads/2023/03/Urbview_logo_left_colored_white.png" alt="UrbView Logo">
+            <nav>
+                <a href="about-data.html">About My Data</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact.html">Contact UrbView</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
         <div class="card">
+            
             <div class="question">Share your experience with the community:</div>
 
             <div class="form" style="display: none;">
@@ -122,6 +197,7 @@
                 <div id="map" class="map"></div>
                 <div class="loading-message">Loading...</div>
             </div>
+            <img src="" style="display: none;" id="'img4card">
 
             <div class="options">
                 <div class="option left-option">Yes</div>
@@ -319,5 +395,17 @@ function transitionEndHandlerLeft() {
         // Set the initial question
         questionElement.textContent = currentQuestion.text;
     </script>
+
+
+    <footer>
+        <div class="footer">
+            <p>Your experience and location data will only be used to investigate potentially dangerous urban patterns and enhance your city experience. UrbView will never sell your data or use it for commercial purposes, except for aggregating it to ensure safety for all individuals.</p>
+            <p>UrbView will only track your location within the exact point you provide, respecting your privacy.</p>
+            <p>If you ever wish to modify or remove your experience or submitted location, please contact us, and we will assist you accordingly.</p>
+            <p>UrbView strictly adheres to European regulations by storing your data within geographical limits defined by the law.</p>
+            <p>For more information about how your data is processed, please visit the data tab in the page header.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
