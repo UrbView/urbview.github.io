@@ -191,11 +191,11 @@
             <div class="form" style="display: none;">
                 <input class="form-input" type="text" placeholder="Your Name">
                 <textarea class="form-input" id="experienceManager" placeholder="Your Experience"></textarea>
-                <button class="form-submit">Submit</button>
+                <button class="form-submit" onclick="submitForm()" >Submit</button>
             </div>
             <div class="map-container" style="display: none;">
                 <div id="map" class="map"></div>
-                <div class="loading-message">Loading...</div>
+                <div class="loading-message">Loading... This may not work on devices without location services</div>
             </div>
             <img src="" style="display: none;" id="'img4card">
 
@@ -211,12 +211,13 @@
 
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
+
     <script>
         const questions = [
             {
                 text: 'Do you want to use your location?',
-                yesText: 'Is this location correct?',
-                noText: 'Do you want to search a location?'
+                yesText: 'Do you want to share your experience?',
+                noText: 'Do you want to share your experience?'
             },
             {
                 text: 'Is this location correct?',
@@ -249,6 +250,46 @@
                 noText: '404'
             }
         ];
+                    // Function to submit the form data
+            function submitForm() {
+            // Get the form input values
+            var name = document.querySelector('.form-input[placeholder="Your Name"]').value;
+            var experience = document.getElementById('experienceManager').value;
+
+            // Create the data object
+            var data = {
+                name: name,
+                experience: experience
+            };
+
+            // Server URL and request options
+            var server = 'https://spot-review-insert.azurewebsites.net/api/hello?code=Ne29pkX5zyxh9kt8tkNE0n9zPg9OYWKXY2FFd-D5VKMsAzFud3FF1w==';
+            var requestOptions = {
+                method: 'POST',
+                body: JSON.stringify(data)
+            };
+
+            // Send the request to the server
+            fetch(server, requestOptions)
+                .then(response => {
+                if (response.ok) {
+                    // Request was successful
+                    return response.json();
+                } else {
+                    // Request failed
+                    throw new Error('Error: ' + response.status);
+                }
+                })
+                .then(data => {
+                // Handle the response data
+                console.log(data);
+                // Perform any additional actions after successful submission
+                })
+                .catch(error => {
+                // Handle errors
+                console.error(error);
+                });
+            }
 
         let currentQuestionIndex = 0;
         let currentQuestion = questions[currentQuestionIndex];
